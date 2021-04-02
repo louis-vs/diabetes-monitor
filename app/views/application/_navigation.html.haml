@@ -1,9 +1,18 @@
 %nav.navbar.navbar-expand-lg.navbar-light.bg-light
-  = link_to 'Navbar', root_path, class: 'navbar-brand'
+  = link_to 'Diabetes Monitor', root_path, class: 'navbar-brand'
   %button.navbar-toggler{type: 'button', data: { toggle: 'collapse', target: '#navbarSupportedContent' }, aria: { controls: "navbarSupportedContent", expanded: "false", label: "Toggle navigation" } }
     %span.navbar-toggler-icon
 
   #navbarSupportedContent.collapse.navbar-collapse
     %ul.navbar-nav.mr-auto
-      %li.nav-item.active= link_to 'Navlink', root_path, class: 'nav-link'
-      %li.nav-item= link_to 'Nav2', root_path, class: 'nav-link'
+      %li.nav-item{ class: ('active' if current_page?('/')) }= link_to 'Home', root_path, class: 'nav-link'
+      %li.nav-item{ class: ('active' if current_page?('/about')) }= link_to 'About', about_path, class: 'nav-link'
+      %li.nav-item.mr-auto= link_to 'Sugar and Insulin Log', root_path, class: user_signed_in? ? 'nav-link' : 'nav-link disabled', 'aria-disabled': !user_signed_in?, tabindex: (-1 unless user_signed_in?)
+    - if user_signed_in?
+      %ul.navbar-nav
+        %li.nav-item{ class: ('active' if current_page?('/auth/edit')) }= link_to "Logged in as #{current_user.name}", edit_user_registration_path, class: 'nav-link'
+        %li.nav-item= link_to 'Logout', destroy_user_session_path, method: :delete, class: 'nav-link'
+    - else
+      %ul.navbar-nav
+        %li.nav-item{ class: ('active' if current_page?('/auth/login')) }= link_to 'Login', new_user_session_path, class: 'nav-link'
+        %li.nav-item{ class: ('active' if current_page?('/auth/register')) }= link_to 'Sign up', new_user_registration_path, class: 'nav-link'

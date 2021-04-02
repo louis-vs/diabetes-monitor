@@ -1,1 +1,11 @@
-PAGE CONTENT
+.jumbotron.jumbotron-fluid
+  .container
+    %h1.display-4 Welcome
+    %p.lead This app does cool stuff.
+    %hr.my-4
+    %p You need to have an account to use this app.
+    - if user_signed_in?
+      = link_to 'Sign up now', new_user_registration_path, class: 'btn btn-primary btn-lg'
+    - else
+      = link_to 'Sign up now', new_user_registration_path, class: 'btn btn-primary btn-lg'
+      = link_to 'Login', new_user_session_path, class: 'btn btn-secondary btn-lg'

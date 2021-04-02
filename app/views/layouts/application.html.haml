@@ -9,7 +9,14 @@
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
   %body
-    = render partial: 'navigation'
-    %p.notice= notice
-    %p.alert= alert
-    = yield
+    .bg-light
+      .container
+        = render partial: 'navigation'
+    %main.pt-2
+      .container
+        - if flash[:notice]
+          .alert.alert-primary= flash[:notice]
+        - if flash[:alert]
+          .alert.alert-danger= flash[:alert]
+        = yield
+    = render partial: 'footer'
