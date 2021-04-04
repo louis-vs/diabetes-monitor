@@ -11,12 +11,15 @@
   %body
     .bg-light
       .container
-        = render partial: 'navigation'
+        = render 'navigation'
     %main.pt-2
       .container
-        - if flash[:notice]
-          .alert.alert-primary= flash[:notice]
-        - if flash[:alert]
-          .alert.alert-danger= flash[:alert]
+        #alerts.sticky-top{ data: { 'turbolinks-permanent': true } }
+          - if notice
+            = render 'shared/alert', alert_type: 'alert-primary' do
+              = notice
+          - if alert
+            = render 'shared/alert', alert_type: 'alert-danger' do
+              = alert
         = yield
-    = render partial: 'footer'
+    = render 'footer'
