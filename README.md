@@ -1,24 +1,36 @@
-# README
+# Diabetes Monitor
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A simple app to help record and monitor blood sugar and insulin levels over time. Made with [Ruby on Rails](https://rubyonrails.org/).
 
-Things you may want to cover:
+**Disclaimer**: *This software is a proof-of-concept, and does not provide medical advice. Downloading and/or using this software is entirely at your own risk.*
 
-* Ruby version
+## Installation
 
-* System dependencies
+Make sure you have [Ruby](https://www.ruby-lang.org/) 2.7.2 and [Rails](https://rubyonrails.org/) 6.1 installed. You will also need [yarn](https://yarnpkg.com) to use Webpacker, which is needed for the website to run.
 
-* Configuration
+Download the source code, then from within the project's root folder run:
 
-* Database creation
+```bash
+$ bin/bundle install
+$ bin/yarn install
+```
 
-* Database initialization
+This will install all dependencies. To create the database run:
 
-* How to run the test suite
+```bash
+$ bin/rails db:create db:schema:load
+```
 
-* Services (job queues, cache servers, search engines, etc.)
+You will need a Postgresql server running locally for this to work. Finally, to run the app (in the development environment) run:
 
-* Deployment instructions
+```bash
+$ bin/rails s
+```
 
-* ...
+## Development
+
+(coming soon)
+
+## Licence
+
+The source code in this repository is licensed under GPLv3-only.
