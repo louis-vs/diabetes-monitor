@@ -17,6 +17,7 @@
       - error
       - unix
     quotes:
+      - error
       - single
       - avoidEscape: true
     semi:
