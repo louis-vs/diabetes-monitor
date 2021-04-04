@@ -23,7 +23,7 @@ group :development do
   gem 'listen', '~> 3.3'
   # gem 'rack-mini-profiler', '~> 2.0'
   gem 'rubocop', '~> 1.8'
-  gem 'rubocop-performance', '~> 1.8'
+  gem 'rubocop-performance', '~> 1.10'
   gem 'rubocop-rails', '~> 2.8'
   gem 'spring'
   gem 'web-console', '~> 4.1.0'
