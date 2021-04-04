@@ -9,7 +9,7 @@ updates:
       - louis-vs
     assignees:
       - louis-vs
-  - package-ecosystem: yarn
+  - package-ecosystem: npm
     directory: "/"
     schedule:
       interval: daily
