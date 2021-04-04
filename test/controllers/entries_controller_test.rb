@@ -3,6 +3,7 @@ require "test_helper"
 class EntriesControllerTest < ActionDispatch::IntegrationTest
   setup do
     @entry = entries(:one)
+    sign_in users(:marcus)
   end
 
   test "should get index" do
@@ -10,39 +11,17 @@ class EntriesControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "should get new" do
-    get new_entry_url
-    assert_response :success
-  end
-
   test "should create entry" do
     assert_difference('Entry.count') do
-      post entries_url, params: { entry: { blood_sugar: @entry.blood_sugar, insulin: @entry.insulin, time: @entry.time, type: @entry.type, user_id: @entry.user_id } }
+      post entries_url, xhr: true, params: { entry: { blood_sugar: @entry.blood_sugar, insulin: @entry.insulin, time: @entry.time, tag: @entry.tag, user_id: @entry.user_id } }
     end
 
-    assert_redirected_to entry_url(Entry.last)
-  end
-
-  test "should show entry" do
-    get entry_url(@entry)
     assert_response :success
-  end
-
-  test "should get edit" do
-    get edit_entry_url(@entry)
-    assert_response :success
-  end
-
-  test "should update entry" do
-    patch entry_url(@entry), params: { entry: { blood_sugar: @entry.blood_sugar, insulin: @entry.insulin, time: @entry.time, type: @entry.type, user_id: @entry.user_id } }
-    assert_redirected_to entry_url(@entry)
   end
 
   test "should destroy entry" do
     assert_difference('Entry.count', -1) do
-      delete entry_url(@entry)
+      delete entry_url(@entry), xhr: true
     end
-
-    assert_redirected_to entries_url
   end
 end
