@@ -31,7 +31,7 @@ end
 
 group :test do
   gem 'capybara', '~> 3.26'
-  gem 'codecov', '~> 0.4'
+  gem 'codecov', '~> 0.5'
   gem 'minitest-rails', '~> 6.1'
   gem 'minitest-reporters', '~> 1.4'
   gem 'selenium-webdriver', '~> 3.142'
