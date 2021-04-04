@@ -17,3 +17,21 @@ ActiveStorage.start();
 
 // expose jQuery to js.erb views
 window.$ = jQuery;
+
+// bootstrap collapse: change text on event
+$(document).on('show.bs.collapse', (e) => {
+  if(e.target.classList.contains('toggle-expand-text')) {
+    // find the element which targets the expanded element
+    let expandBtn = $(`[data-target="#${e.target.id}"]`)[0];
+    // change text
+    expandBtn.innerHTML = $(expandBtn).data('collapsetext');
+  }
+});
+$(document).on('hide.bs.collapse', (e) => {
+  if(e.target.classList.contains('toggle-expand-text')) {
+    // find the element which targets the collapsed element
+    let collapseBtn = $(`[data-target="#${e.target.id}"]`)[0];
+    // change text
+    collapseBtn.innerHTML = $(collapseBtn).data('expandtext');
+  }
+});
