@@ -18,13 +18,14 @@
 # along with diabetes-monitor.  If not, see <https://www.gnu.org/licenses/>.
 #++
 
+# Controller base class
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   protected
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :terms_of_service])
+    devise_parameter_sanitizer.permit(:sign_up, keys: %i[name terms_of_service])
     devise_parameter_sanitizer.permit(:account_update, keys: [:name])
   end
 end
