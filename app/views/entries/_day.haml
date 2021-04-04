@@ -1,0 +1,27 @@
+-# locals: date entries
+%tr
+  %td= time_tag date
+  %td{ id: "num_readings_#{date.to_formatted_s(:number)}" }= entries.length
+  %td= button_tag 'Expand', type: 'button', data: { toggle: 'collapse', target: "#date_#{date.to_formatted_s(:number)}", collapsetext: 'Collapse', expandtext: 'Expand' }, aria: { expanded: false, controls: "date_#{date.to_formatted_s(:number)}" }, class: 'btn btn-primary btn-block'
+  %td delete all
+%tr.collapse.toggle-expand-text{ id: "date_#{date.to_formatted_s(:number)}" }
+  %td{ colspan: '5' }
+    .table-responsive
+      %table.table{}
+        %thead
+          %tr
+            %th{ scope: 'col'} Time
+            %th{ scope: 'col'} Tag
+            %th{ scope: 'col'} Blood sugar
+            %th{ scope: 'col'} Insulin
+            %th{ scope: 'col'}
+            %th{ scope: 'col'}
+            %th{ scope: 'col'}
+        %tbody
+          = render entries
+          %tr{ id: "new_entry_#{date.to_formatted_s(:number)}" }
+            %td{ colspan: 7 }
+              .card.border-0
+                %h2.card-header.p-0.border-0= button_tag 'New entry', type: 'button', data: { toggle: 'collapse', target: "#form_#{date.to_formatted_s(:number)}" }, aria: { expanded: false, controls: "form_#{date.to_formatted_s(:number)}" }, class: 'btn btn-primary btn-block text-left'
+                .card-body.collapse{ id: "form_#{date.to_formatted_s(:number)}" }
+                  = render partial: 'form', locals: { entry: Entry.new(time: Time.now), date: date }

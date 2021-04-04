@@ -1,0 +1,21 @@
+%p#notice= notice
+
+%p
+  %b Time:
+  = @entry.time
+%p
+  %b Blood sugar:
+  = @entry.blood_sugar
+%p
+  %b Insulin:
+  = @entry.insulin
+%p
+  %b Type:
+  = @entry.type
+%p
+  %b User:
+  = @entry.user
+
+= link_to 'Edit', edit_entry_path(@entry)
+\|
+= link_to 'Back', entries_path

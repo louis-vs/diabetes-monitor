@@ -2,7 +2,9 @@
 
 Rails.application.routes.draw do
   devise_for :users, path: 'auth', path_names: { sign_in: 'login', sign_out: 'logout', sign_up: 'register' }
-  root 'welcome#index'
 
+  root 'welcome#index'
   get 'about', to: 'welcome#about'
+
+  resources :entries, only: %i[index create update destroy]
 end

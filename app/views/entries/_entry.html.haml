@@ -1,0 +1,16 @@
+%tr{ id: "entry_#{entry.id}" }
+  %td= time_tag entry.time, entry.time.to_formatted_s(:time)
+  %td= entry.tag
+  %td= entry.blood_sugar
+  %td= entry.insulin
+  %td= button_tag entry.notes == '' ? 'Add notes' : 'View notes', type: 'button', data: { toggle: 'collapse', target: "#notes_#{entry.id}", collapsetext: 'Hide', expandtext: (entry.notes == '' ? 'Add notes' : 'View notes') }, aria: { expanded: false, controls: "notes_#{entry.id}" }, class: 'btn btn-secondary btn-block'
+  %td= 'Edit'
+  %td
+    = form_with model: entry, local: false, method: 'delete', namespace: "delete_#{entry.id}_" do |f|
+      = f.submit 'Delete', data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-block'
+%tr.collapse.toggle-expand-text{ id: "notes_#{entry.id}" }
+  %td{ colspan: 7 }
+    = form_with model: entry, local: false, namespace: "notes_#{entry.id}_" do |f|
+      .formgroup.row
+        = f.text_area :notes, class: 'form-control col-sm-4 m-1'
+        = f.submit 'Save', class: 'btn btn-primary col-sm-2 m-1'

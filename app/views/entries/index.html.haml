@@ -1,0 +1,15 @@
+%h1 Log entries
+
+.table-responsive
+  %table.table
+    %thead
+      %tr
+        %th{ scope: 'col' } Date
+        %th{ scope: 'col' } Number of readings
+        %th{ scope: 'col' }
+        %th{ scope: 'col' }
+        %th{ scope: 'col' }
+
+    %tbody
+      - @data.keys.sort.reverse_each do |date|
+        = render partial: 'day', locals: { date: date, entries: @data[date].sort }
