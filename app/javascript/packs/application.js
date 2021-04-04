@@ -14,3 +14,6 @@ import 'channels';
 Rails.start();
 Turbolinks.start();
 ActiveStorage.start();
+
+// expose jQuery to js.erb views
+window.$ = jQuery;
