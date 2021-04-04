@@ -22,6 +22,9 @@ module DiabetesMonitor
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
 
+    # don't embed auth tokens in AJAX forms
+    config.action_view.embed_authenticity_token_in_remote_forms = false
+
     ActionView::Base.field_error_proc = proc do |html_tag, _instance|
       html_tag.gsub('form-control', 'form-control is-invalid').html_safe # rubocop:disable Rails/OutputSafety
     end
