@@ -49,3 +49,8 @@ $(document).on('hide.bs.collapse', (e) => {
     collapseBtn.innerHTML = $(collapseBtn).data('expandtext');
   }
 });
+
+// fired when entry created
+$(document).on('entries:create', () => {
+  $('tr.table-success').removeClass('table-success');
+});

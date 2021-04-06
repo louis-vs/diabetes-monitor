@@ -11,8 +11,10 @@
     <%# if the user has added an entry to a new date, we need to refresh the page %>
     Turbolinks.visit('<%= entries_path %>', { action: 'replace' });
   } else {
+    <%# trigger js event (defined in application.js - potentially more code could be extracted to here) %>
+    $(document).trigger('entries:create');
     <%# add new table row %>
-    $("#new_entry_<%= j @entry.time.to_date.to_formatted_s(:number) %>").before("<%= j render @entry %>");
+    $("#new_entry_<%= j @entry.time.to_date.to_formatted_s(:number) %>").before("<%= j render @entry, success: true %>");
     <%# increment "number of readings" %>
     $("#num_readings_<%= j @entry.time.to_date.to_formatted_s(:number) %>").each(function() {
       $(this).text(String(parseInt($(this).text(), 10) + 1));

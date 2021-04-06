@@ -6,9 +6,9 @@
   %td delete all
 %tr.collapse.toggle-expand-text{ id: "date_#{date.to_formatted_s(:number)}" }
   %td{ colspan: '5' }
-    .table-responsive
-      %table.table{}
-        %thead
+    .table-responsive.border.border-dark
+      %table.table.table-hover
+        %thead.thead-dark
           %tr
             %th{ scope: 'col'} Time
             %th{ scope: 'col'} Tag
@@ -21,7 +21,7 @@
           = render entries
           %tr{ id: "new_entry_#{date.to_formatted_s(:number)}" }
             %td{ colspan: 7 }
-              .card.border-0
+              .card.bg-transparent.border-1.border-dark
                 %h2.card-header.p-0.border-0= button_tag 'New entry', type: 'button', data: { toggle: 'collapse', target: "#form_#{date.to_formatted_s(:number)}" }, aria: { expanded: false, controls: "form_#{date.to_formatted_s(:number)}" }, class: 'btn btn-primary btn-block text-left'
                 .card-body.collapse{ id: "form_#{date.to_formatted_s(:number)}" }
                   = render partial: 'form', locals: { entry: Entry.new(time: Time.now), date: date }

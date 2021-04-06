@@ -1,4 +1,5 @@
-%tr{ id: "entry_#{entry.id}" }
+-# locals: entry (success)
+%tr{ id: "entry_#{entry.id}", class: ('table-success' if local_assigns[:success]) }
   %td= time_tag entry.time, entry.time.to_formatted_s(:time)
   %td= entry.tag
   %td= entry.blood_sugar
