@@ -6,5 +6,5 @@ Rails.application.routes.draw do
   root 'welcome#index'
   get 'about', to: 'welcome#about'
 
-  resources :entries, only: %i[index create update destroy]
+  resources :entries, only: %i[index create edit update destroy]
 end
