@@ -27,7 +27,7 @@ class EntriesController < ApplicationController
   def index
     @entries = Entry.where(user_id: current_user.id)
     # expose @data array of entries grouped by date for table { date: [objects] }
-    @data = @entries.group_by { |entry| entry.time.to_date }
+    @data = @entries.sorted.group_by { |entry| entry.time.to_date }
     @data[Time.zone.today.to_date] ||= []
   end
 

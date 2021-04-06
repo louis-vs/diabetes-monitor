@@ -12,4 +12,4 @@
 
     %tbody
       - @data.keys.sort.reverse_each do |date|
-        = render partial: 'day', locals: { date: date, entries: @data[date].sort }
+        = render partial: 'day', locals: { date: date, entries: @data[date] }
