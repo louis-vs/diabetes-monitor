@@ -82,5 +82,3 @@ test:
 production:
   <<: *default
   database: diabetes_monitor_production
-  username: diabetes_monitor
-  password: <%= ENV['DIABETES_MONITOR_DATABASE_PASSWORD'] %>

@@ -38,5 +38,10 @@ group :test do
   gem 'simplecov', '~> 0.21'
 end
 
+group :production do
+  gem 'dotenv-rails', '~> 2.7'
+  gem 'rack-timeout', '~> 0.6'
+end
+
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
