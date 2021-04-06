@@ -5,7 +5,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.7.2'
 
-gem 'bootsnap', '~> 1.4.4', require: false
+gem 'bootsnap', '~> 1.7.3', require: false
 gem 'devise'
 gem 'haml-rails', '~> 2.0'
 gem 'pg', '~> 1.1'
@@ -20,9 +20,9 @@ group :development, :test do
 end
 
 group :development do
-  gem 'listen', '~> 3.3'
+  gem 'listen', '~> 3.5'
   # gem 'rack-mini-profiler', '~> 2.0'
-  gem 'rubocop', '~> 1.8'
+  gem 'rubocop', '~> 1.12'
   gem 'rubocop-performance', '~> 1.10'
   gem 'rubocop-rails', '~> 2.8'
   gem 'spring'
