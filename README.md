@@ -27,6 +27,13 @@ You will need a Postgresql server running locally for this to work. Finally, to 
 $ bin/rails s
 ```
 
+To receive mail from Devise::Mailer in development, you need to use MailCatcher. Install it using RubyGems and make sure it's running when using mailer features:
+
+```bash
+$ gem install mailcatcher
+$ mailcatcher
+```
+
 ## Development
 
 (coming soon)
