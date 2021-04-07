@@ -2,7 +2,7 @@
 
 require 'active_support/core_ext/integer/time'
 
-Rails.application.configure do
+Rails.application.configure do # rubocop:disable Metrics/BlockLength
   # Settings specified here will take precedence over those in config/application.rb.
 
   # Code is not reloaded between requests.
@@ -65,6 +65,20 @@ Rails.application.configure do
   # config.active_job.queue_name_prefix = "diabetes_monitor_production"
 
   config.action_mailer.perform_caching = false
+
+  # Needed for devise mailer (to use URL helpers)
+  config.action_mailer.default_url_options = { host: ENV['HOSTNAME'], port: ENV['PORT'] }
+
+  # Use Gmail SMTP
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address: 'smtp.gmail.com',
+    port: 587,
+    user_name: ENV['DEVISE_EMAIL'],
+    password: ENV['DEVISE_EMAIL_PASSWORD'],
+    authentication: 'plain',
+    enable_starttls_auto: true
+  }
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.

@@ -40,7 +40,11 @@ Rails.application.configure do # rubocop:disable Metrics/BlockLength
 
   config.action_mailer.perform_caching = false
 
-  # Needed for devise mailer
+  # Use MailCatcher
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = { address: '127.0.0.1', port: 1025 }
+
+  # Needed for devise mailer (to use URL helpers)
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 
   # Print deprecation notices to the Rails logger.
