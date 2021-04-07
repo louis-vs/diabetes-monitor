@@ -67,7 +67,7 @@ Rails.application.configure do # rubocop:disable Metrics/BlockLength
   config.action_mailer.perform_caching = false
 
   # Needed for devise mailer (to use URL helpers)
-  config.action_mailer.default_url_options = { host: ENV['HOSTNAME'], port: ENV['PORT'] }
+  config.action_mailer.default_url_options = { host: ENV['HOSTNAME'] }
 
   # Use Gmail SMTP
   config.action_mailer.delivery_method = :smtp
