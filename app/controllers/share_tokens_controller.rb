@@ -28,7 +28,7 @@ class ShareTokensController < ApplicationController
 
   # GET /share_tokens
   def index
-    @share_tokens = ShareToken.all
+    @share_tokens = current_user.share_tokens
   end
 
   # POST /share_tokens
