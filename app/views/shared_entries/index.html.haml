@@ -1,0 +1,21 @@
+%h1 Log entries
+
+%p You are viewing entries for #{content_tag :strong, @user.name}.
+%p
+  You are accessing this page using a temporary link. It will expire after it is used too
+  many times.
+- if user_signed_in?
+  %p
+    You cannot edit entries on this page. #{link_to 'Click here to access your personal entries', entries_url}.
+
+- else
+  %p
+    You cannot edit entries on this page. If you would like to create an account, please #{link_to 'click here to sign up', new_user_registration_url}.
+
+.table-responsive.border.border-dark
+  %table.table.table-hover
+    = render 'entries/table_head'
+
+    %tbody
+      - @data.keys.sort.reverse_each do |date|
+        = render partial: 'shared_day', locals: { date: date, entries: @data[date] }

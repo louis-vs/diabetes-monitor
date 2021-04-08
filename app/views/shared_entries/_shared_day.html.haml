@@ -1,0 +1,13 @@
+-# locals: date entries
+%tr
+  %td= time_tag date
+  %td{ id: "num_readings_#{date.to_formatted_s(:number)}" }= entries.length
+  %td= button_tag 'Expand', type: 'button', data: { toggle: 'collapse', target: "#date_#{date.to_formatted_s(:number)}", collapsetext: 'Collapse', expandtext: 'Expand' }, aria: { expanded: false, controls: "date_#{date.to_formatted_s(:number)}" }, class: 'btn btn-primary btn-block'
+%tr.collapse.toggle-expand-text{ id: "date_#{date.to_formatted_s(:number)}" }
+  %td{ colspan: '5' }
+    .table-responsive.border.border-dark
+      %table.table.table-hover
+        = render 'entries/day_table_head'
+        %tbody
+          - entries.each do |entry|
+            = render 'shared_entry', entry: entry

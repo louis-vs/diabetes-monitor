@@ -1,0 +1,9 @@
+<% if @share_token.destroyed? %>
+  <%# render success message %>
+  $('#alerts').html("<%= j render partial: 'alert_destroy_success' %>");
+  <%# remove token card %>
+  $('#token_<%= j @share_token.id %>').remove();
+<% else %>
+  <%# render error message %>
+  $('#alerts').html("<%= j render partial: 'alert_destroy_error' %>");
+<% end %>

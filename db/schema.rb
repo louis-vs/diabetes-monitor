@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_07_133604) do
+ActiveRecord::Schema.define(version: 2021_04_08_140205) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,16 @@ ActiveRecord::Schema.define(version: 2021_04_07_133604) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_entries_on_user_id"
+  end
+
+  create_table "share_tokens", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "token", default: "", null: false
+    t.integer "uses_remaining", default: 0, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["token"], name: "index_share_tokens_on_token", unique: true
+    t.index ["user_id"], name: "index_share_tokens_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -46,4 +56,5 @@ ActiveRecord::Schema.define(version: 2021_04_07_133604) do
   end
 
   add_foreign_key "entries", "users"
+  add_foreign_key "share_tokens", "users"
 end

@@ -1,0 +1,9 @@
+<% if @share_token.errors.empty? %>
+  <%# render success message %>
+  $('#alerts').html("<%= j render partial: 'alert_update_success' %>");
+  <%# update token's remaining uses %>
+  $('#token_<%= j @share_token.id %>__share_token_uses_remaining').val("<%= j @share_token.uses_remaining %>");
+<% else %>
+  <%# render error message %>
+  $('#alerts').html("<%= j render partial: 'alert_update_error' %>");
+<% end %>

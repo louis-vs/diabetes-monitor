@@ -1,0 +1,19 @@
+= form_for @share_token do |f|
+  - if @share_token.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@share_token.errors.count, "error")} prohibited this share_token from being saved:"
+      %ul
+        - @share_token.errors.full_messages.each do |message|
+          %li= message
+
+  .field
+    = f.label :user
+    = f.text_field :user
+  .field
+    = f.label :token
+    = f.text_field :token
+  .field
+    = f.label :uses_remaining
+    = f.number_field :uses_remaining
+  .actions
+    = f.submit 'Save'

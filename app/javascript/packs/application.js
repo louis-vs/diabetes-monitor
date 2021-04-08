@@ -22,6 +22,7 @@ import Turbolinks from 'turbolinks';
 import * as ActiveStorage from '@rails/activestorage';
 
 import 'bootstrap';
+import ClipboardJS from 'clipboard';
 
 import 'channels';
 
@@ -31,6 +32,33 @@ ActiveStorage.start();
 
 // expose jQuery to js.erb views
 window.$ = jQuery;
+
+// do things when page loads
+$(document).on('turbolinks:load', () => {
+  let clipboard = new ClipboardJS('.copy-button');
+
+  // clipboard.js: alert user about success or failure
+  clipboard.on('success', () => {
+    $('#alerts').html(`
+      <div class="alert alert-success alert-dismissable fade show" role="alert">
+        Copied to clipboard!
+        <button type="button" class="close" data-dismiss="alert" aria-label="close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    `);
+  });
+  clipboard.on('error', () => {
+    $('#alerts').html(`
+      <div class="alert alert-danger alert-dismissable fade show" role="alert">
+        Failed to copy to clipboard.
+        <button type="button" class="close" data-dismiss="alert" aria-label="close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    `);
+  });
+});
 
 // bootstrap collapse: change text on event
 $(document).on('show.bs.collapse', (e) => {
