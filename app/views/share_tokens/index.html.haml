@@ -1,0 +1,19 @@
+%h1 Share Links
+%p
+  You can generate links on this page which you can use to share your data with someone else.
+  For security and privacy reasons, these links have a limited number of uses. Once a link has
+  expired, you will need to generate a new link if you would like to continue sharing.
+
+%h2 Your links:
+
+#tokens
+  - if @share_tokens.any?
+    = render @share_tokens
+  - else
+    %p#no_tokens_message You have no active share links.
+
+#new_token.mt-1
+  = form_with model: ShareToken.new, local: false, namespace: 'new_token_' do |f|
+    = f.button class: 'btn btn-primary' do
+      %i.bi.bi-plus-square-fill.mr-1
+      Generate token

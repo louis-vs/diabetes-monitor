@@ -1,0 +1,11 @@
+<% if @share_token.persisted? %>
+  <%# render success message %>
+  $('#alerts').html("<%= j render partial: 'alert_create_success' %>");
+  <%# remove "no tokens" message if present %>
+  $('#no_tokens_message').remove();
+  <%# render new token %>
+  $('#tokens').append("<%= j render @share_token %>");
+<% else %>
+  <%# render error message %>
+  $('#alerts').html("<%= j render partial: 'alert_create_error' %>");
+<% end %>

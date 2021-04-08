@@ -7,4 +7,5 @@ Rails.application.routes.draw do
   get 'about', to: 'welcome#about'
 
   resources :entries, only: %i[index create edit update destroy]
+  resources :share_tokens, only: %i[index create update destroy]
 end

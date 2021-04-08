@@ -24,6 +24,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable, :confirmable
 
   has_many :entries, dependent: :destroy
+  has_many :share_tokens, dependent: :destroy
 
   validates :terms_of_service, acceptance: true
 end
