@@ -8,15 +8,7 @@
   %td{ colspan: '5' }
     .table-responsive.border.border-dark
       %table.table.table-hover
-        %thead.thead-dark
-          %tr
-            %th{ scope: 'col'} Time
-            %th{ scope: 'col'} Tag
-            %th{ scope: 'col'} Blood sugar
-            %th{ scope: 'col'} Insulin
-            %th{ scope: 'col'}
-            %th{ scope: 'col'}
-            %th{ scope: 'col'}
+        = render 'day_table_head'
         %tbody
           = render entries
           %tr{ id: "new_entry_#{date.to_formatted_s(:number)}" }

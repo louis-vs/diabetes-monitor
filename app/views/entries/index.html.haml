@@ -2,13 +2,7 @@
 
 .table-responsive.border.border-dark
   %table.table.table-hover
-    %thead.thead-light
-      %tr
-        %th{ scope: 'col' } Date
-        %th{ scope: 'col' } Number of readings
-        %th{ scope: 'col' }
-        %th{ scope: 'col' }
-        %th{ scope: 'col' }
+    = render 'table_head'
 
     %tbody
       - @data.keys.sort.reverse_each do |date|
