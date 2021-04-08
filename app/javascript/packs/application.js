@@ -22,6 +22,7 @@ import Turbolinks from 'turbolinks';
 import * as ActiveStorage from '@rails/activestorage';
 
 import 'bootstrap';
+import ClipboardJS from 'clipboard';
 
 import 'channels';
 
@@ -31,6 +32,11 @@ ActiveStorage.start();
 
 // expose jQuery to js.erb views
 window.$ = jQuery;
+
+// do things when page loads
+$(document).on('turbolinks:load', () => {
+  new ClipboardJS('.copy-button');
+});
 
 // bootstrap collapse: change text on event
 $(document).on('show.bs.collapse', (e) => {
