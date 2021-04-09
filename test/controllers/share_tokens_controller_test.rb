@@ -4,10 +4,8 @@ require 'test_helper'
 
 class ShareTokensControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @share_token = share_tokens(:one)
-    @user = users(:marcus)
-    @user.confirm
-    sign_in @user
+    authenticate
+    @share_token = share_tokens(:marcus_token_one)
   end
 
   test 'should get index' do

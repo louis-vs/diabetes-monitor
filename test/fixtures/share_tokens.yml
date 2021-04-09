@@ -1,11 +1,14 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-one:
+marcus_token_one:
   user: marcus
   token: 12345678
   uses_remaining: 1
 
-two:
+marcus_token_two:
   user: marcus
   token: abcdefg
-  uses_remaining: 1
+  uses_remaining: 5
+
+juliet_token_one:
+  user: juliet
+  token: asdfghjkl;
+  uses_remaining: 5

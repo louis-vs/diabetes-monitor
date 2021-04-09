@@ -23,6 +23,12 @@ require 'rails/test_help'
 # Filter out the backtrace from minitest while preserving the one from other libraries.
 Minitest.backtrace_filter = Minitest::BacktraceFilter.new
 
+# require helpers
+require 'helpers/test_password_helper'
+
+# include helpers in fixtures
+ActiveRecord::FixtureSet.context_class.send :include, TestPasswordHelper
+
 module ActiveSupport
   class TestCase
     # Run tests in parallel with specified workers
@@ -33,5 +39,12 @@ module ActiveSupport
 
     # Add more helper methods to be used by all tests here...
     include Devise::Test::IntegrationHelpers
+    include TestPasswordHelper
+
+    def authenticate
+      @user = users(:marcus)
+      @user.confirm
+      sign_in @user
+    end
   end
 end

@@ -4,10 +4,8 @@ require 'test_helper'
 
 class EntriesControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @entry = entries(:one)
-    @user = users(:marcus)
-    @user.confirm
-    sign_in @user
+    authenticate
+    @entry = entries(:marcus_entry_one)
   end
 
   test 'should get index' do
