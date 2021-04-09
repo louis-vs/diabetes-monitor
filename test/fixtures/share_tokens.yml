@@ -7,8 +7,3 @@ marcus_token_two:
   user: marcus
   token: abcdefg
   uses_remaining: 5
-
-juliet_token_one:
-  user: juliet
-  token: asdfghjkl;
-  uses_remaining: 5
