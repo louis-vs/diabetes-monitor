@@ -21,6 +21,8 @@ import Rails from '@rails/ujs';
 import Turbolinks from 'turbolinks';
 import * as ActiveStorage from '@rails/activestorage';
 
+// jQuery, $, and Popper are provided as plugins in /config/webpack/environment.js
+
 import 'bootstrap';
 import ClipboardJS from 'clipboard';
 
@@ -64,21 +66,21 @@ $(document).on('turbolinks:load', () => {
 $(document).on('show.bs.collapse', (e) => {
   if(e.target.classList.contains('toggle-expand-text')) {
     // find the element which targets the expanded element
-    let expandBtn = $(`[data-target="#${e.target.id}"]`)[0];
+    let expandBtn = $(`[data-target="#${e.target.id}"]`);
     // change text
-    expandBtn.innerHTML = $(expandBtn).data('collapsetext');
+    expandBtn.html($(expandBtn).data('collapsetext'));
   }
 });
 $(document).on('hide.bs.collapse', (e) => {
   if(e.target.classList.contains('toggle-expand-text')) {
     // find the element which targets the collapsed element
-    let collapseBtn = $(`[data-target="#${e.target.id}"]`)[0];
+    let collapseBtn = $(`[data-target="#${e.target.id}"]`);
     // change text
-    collapseBtn.innerHTML = $(collapseBtn).data('expandtext');
+    collapseBtn.html($(collapseBtn).data('expandtext'));
   }
 });
 
-// fired when entry created
+// fired when entry created, see /app/views/entries/create.js.erb
 $(document).on('entries:create', () => {
   $('tr.table-success').removeClass('table-success');
 });
