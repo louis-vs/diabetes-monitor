@@ -6,6 +6,7 @@ class EntriesControllerTest < ActionDispatch::IntegrationTest
   setup do
     authenticate
     @entry = entries(:marcus_entry_one)
+    @foreign_entry = entries(:user_1_entry_1) # rubocop:disable Naming/VariableNumber
     @new_entry_params = { blood_sugar: 1,
                           insulin: 1,
                           time: Time.current,
@@ -61,6 +62,20 @@ class EntriesControllerTest < ActionDispatch::IntegrationTest
     assert_difference 'Entry.count', -1 do
       delete entry_url(@entry), xhr: true
     end
+
+    assert_response :success
+  end
+
+  test 'should only destroy entry of authenticated user' do
+    assert_no_difference 'Entry.count' do
+      delete entry_url(@foreign_entry), xhr: true
+    end
+    assert_response :unauthorized
+
+    @foreign_entry.reload
+    assert_not_nil @foreign_entry
+    assert_not @foreign_entry.destroyed?
+    assert_not_equal @user.id, @foreign_entry.user.id
   end
 
   test 'should not destroy entry if not authenticated' do
