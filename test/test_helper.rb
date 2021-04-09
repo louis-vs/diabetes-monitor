@@ -46,5 +46,9 @@ module ActiveSupport
       @user.confirm
       sign_in @user
     end
+
+    def deauthenticate
+      @user && sign_out(@user)
+    end
   end
 end
