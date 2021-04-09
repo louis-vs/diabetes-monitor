@@ -32,7 +32,14 @@ ActiveRecord::FixtureSet.context_class.send :include, TestPasswordHelper
 module ActiveSupport
   class TestCase
     # Run tests in parallel with specified workers
-    parallelize(workers: :number_of_processors)
+    parallelize workers: :number_of_processors
+    # SimpleCov integration
+    parallelize_setup do |worker|
+      SimpleCov.command_name "#{SimpleCov.command_name} worker #{worker}"
+    end
+    parallelize_teardown do
+      SimpleCov.result
+    end
 
     # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
     fixtures :all
