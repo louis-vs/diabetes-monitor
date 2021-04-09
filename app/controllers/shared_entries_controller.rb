@@ -36,12 +36,10 @@ class SharedEntriesController < ApplicationController
     redirect_to root_path, alert: 'Access denied. Your shared link may have expired.'
   end
 
-  def token_parameter
-    params[:token] || redirect_with_error
-  end
-
   def authenticate_share_token
-    @share_token = ShareToken.find_by(token: token_parameter)
+    (redirect_with_error and return) if params[:token].nil?
+
+    @share_token = ShareToken.find_by(token: params[:token])
     if @share_token.nil?
       redirect_with_error
     else
