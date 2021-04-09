@@ -1,15 +1,26 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-one:
-  time: 2021-04-02 14:28:15
-  blood_sugar: 9.99
-  insulin: 9.99
+# specific entries
+marcus_entry_one:
+  time: 2021-04-02 08:25:00
+  blood_sugar: 11
+  insulin: 8
   tag: 1
-  user: one
+  user: marcus
 
-two:
-  time: 2021-04-02 14:28:15
-  blood_sugar: 9.99
-  insulin: 9.99
-  tag: 1
-  user: two
+marcus_entry_two:
+  time: 2021-04-02 12:00:00
+  blood_sugar: 13
+  insulin: 10
+  tag: 2
+  user: marcus
+
+# random entries
+<% 10.times do |n| %>
+<% 5.times do |i| %>
+user_<%= n %>_entry_<%= i %>:
+  time: <%= rand(10.years).seconds.ago %>
+  blood_sugar: <%= rand(10.0) %>
+  insulin: <%= rand(10.0) %>
+  tag: <%= rand(4) %>
+  user: user_<%= n %>
+<% end %>
+<% end %>

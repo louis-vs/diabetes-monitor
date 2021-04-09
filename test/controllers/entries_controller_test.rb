@@ -4,10 +4,13 @@ require 'test_helper'
 
 class EntriesControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @entry = entries(:one)
-    @user = users(:marcus)
-    @user.confirm
-    sign_in @user
+    authenticate
+    @entry = entries(:marcus_entry_one)
+    @foreign_entry = entries(:user_1_entry_1) # rubocop:disable Naming/VariableNumber
+    @new_entry_params = { blood_sugar: 1,
+                          insulin: 1,
+                          time: Time.current,
+                          tag: 'other' }
   end
 
   test 'should get index' do
@@ -15,22 +18,72 @@ class EntriesControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test 'should not get index if not authenticated' do
+    deauthenticate
+    get entries_url
+    assert_redirected_to new_user_session_path
+  end
+
   test 'should create entry' do
-    assert_difference('Entry.count') do
-      post entries_url, xhr: true,
-                        params: { entry: { blood_sugar: @entry.blood_sugar,
-                                           insulin: @entry.insulin,
-                                           time: @entry.time,
-                                           tag: @entry.tag,
-                                           user_id: @entry.user_id } }
+    assert_difference 'Entry.count' do
+      post entries_url, xhr: true, params: { entry: @new_entry_params }
     end
 
     assert_response :success
   end
 
+  test 'created entry should reference authenticated user' do
+    assert_difference -> { @user.entries.count } do
+      post entries_url, xhr: true, params: { entry: @new_entry_params }
+    end
+
+    assert_response :success
+  end
+
+  test 'create should ignore user parameter' do
+    assert_difference -> { @user.entries.count } do
+      post entries_url, xhr: true, params: { entry: @new_entry_params.merge(user_id: users(:juliet).id) }
+    end
+
+    assert_empty users(:juliet).entries
+    assert_response :success
+  end
+
+  test 'should not create entry if not authenticated' do
+    deauthenticate
+    assert_no_difference 'Entry.count' do
+      post entries_url, xhr: true, params: { entry: @new_entry_params }
+    end
+
+    assert_response :unauthorized
+  end
+
   test 'should destroy entry' do
-    assert_difference('Entry.count', -1) do
+    assert_difference 'Entry.count', -1 do
       delete entry_url(@entry), xhr: true
     end
+
+    assert_response :success
+  end
+
+  test 'should only destroy entry of authenticated user' do
+    assert_no_difference 'Entry.count' do
+      delete entry_url(@foreign_entry), xhr: true
+    end
+    assert_response :unauthorized
+
+    @foreign_entry.reload
+    assert_not_nil @foreign_entry
+    assert_not @foreign_entry.destroyed?
+    assert_not_equal @user.id, @foreign_entry.user.id
+  end
+
+  test 'should not destroy entry if not authenticated' do
+    deauthenticate
+    assert_no_difference 'Entry.count' do
+      post entries_url, xhr: true, params: { entry: @new_entry_params }
+    end
+
+    assert_response :unauthorized
   end
 end

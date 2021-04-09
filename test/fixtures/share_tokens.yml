@@ -1,11 +1,19 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-one:
+marcus_token_one:
   user: marcus
   token: 12345678
   uses_remaining: 1
 
-two:
+marcus_token_two:
   user: marcus
   token: abcdefg
-  uses_remaining: 1
+  uses_remaining: 5
+
+# random entries
+<% 10.times do |n| %>
+<% 5.times do |i| %>
+user_<%= n %>_token_<%= i %>:
+  user: user_<%= n %>
+  token: <%= SecureRandom.base58 24 %>
+  uses_remaining: 4
+<% end %>
+<% end %>

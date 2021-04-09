@@ -18,13 +18,22 @@
 # along with diabetes-monitor.  If not, see <https://www.gnu.org/licenses/>.
 #++
 
+# A record for a Devise user
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable, :confirmable
 
+  # @!attribute [rw] entires
+  #   @return [ActiveRecord::Relation] the entries which which this user is associated
   has_many :entries, dependent: :destroy
+  # @!attribute [rw] share_tokens
+  #   @return [ActiveRecord::Relation] the share tokens which which this user is associated
   has_many :share_tokens, dependent: :destroy
+  # @!attribute [rw] email
+  #   @return [String] the user's email address
+  # @!attribute [rw] name
+  #   @return [String] the user's name
 
   validates :terms_of_service, acceptance: true
 end

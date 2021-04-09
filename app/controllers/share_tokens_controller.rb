@@ -23,6 +23,7 @@
 class ShareTokensController < ApplicationController
   before_action :authenticate_user!
   before_action :set_share_token, only: %i[update destroy]
+  before_action :check_user, only: %i[update destroy]
 
   MAX_TOKEN_USES = 5
 
@@ -61,5 +62,10 @@ class ShareTokensController < ApplicationController
   # Only allow a list of trusted parameters through.
   def share_token_params
     params.require(:share_token).permit(:uses_remaining)
+  end
+
+  # Repond with 401 error if the user attempts to manipulate another user's entries
+  def check_user
+    head :unauthorized unless current_user.id == @share_token.user_id
   end
 end

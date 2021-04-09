@@ -22,6 +22,7 @@
 class EntriesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_entry, only: %i[edit update destroy]
+  before_action :check_user, only: %i[edit update destroy]
 
   # GET /entries
   def index
@@ -67,5 +68,10 @@ class EntriesController < ApplicationController
   # Only allow a list of trusted parameters through.
   def entry_params
     params.require(:entry).permit(:time, :blood_sugar, :insulin, :tag, :notes)
+  end
+
+  # Repond with 401 error if the user attempts to manipulate another user's entries
+  def check_user
+    head :unauthorized unless current_user.id == @entry.user_id
   end
 end

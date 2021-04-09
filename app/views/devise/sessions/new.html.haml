@@ -1,17 +1,18 @@
 %h2 Log in
-= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-  .form-group.row
-    = f.label :email, class: 'col-sm-2 col-form-label'
-    .col-sm-8= f.email_field :email, autofocus: true, autocomplete: 'email', class: 'form-control'
-  .form-group.row
-    = f.label :password, class: 'col-sm-2 col-form-label'
-    .col-sm-8= f.password_field :password, autocomplete: 'current-password', class: 'form-control'
-  - if devise_mapping.rememberable?
+= form_for resource, as: resource_name, url: session_path(resource_name) do |f|
+  .login-fields
     .form-group.row
-      .col-sm-8.offset-sm-2
-        .form-check
-          = f.check_box :remember_me, class: 'form-check-input'
-          = f.label :remember_me, class: 'form-check-label'
+      = f.label :email, class: 'col-sm-2 col-form-label'
+      .col-sm-8= f.email_field :email, autofocus: true, autocomplete: 'email', class: 'form-control'
+    .form-group.row
+      = f.label :password, class: 'col-sm-2 col-form-label'
+      .col-sm-8= f.password_field :password, autocomplete: 'current-password', class: 'form-control'
+    - if devise_mapping.rememberable?
+      .form-group.row
+        .col-sm-8.offset-sm-2
+          .form-check
+            = f.check_box :remember_me, class: 'form-check-input'
+            = f.label :remember_me, class: 'form-check-label'
   .form-group.row
     .col-sm-8= f.submit 'Log in', class: 'btn btn-primary'
 = render 'devise/shared/links'
