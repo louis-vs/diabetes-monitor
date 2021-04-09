@@ -2,7 +2,7 @@
 
 require 'test_helper'
 
-class EntriesControllerTest < ActionDispatch::IntegrationTest
+class EntriesControllerTest < ActionDispatch::IntegrationTest # rubocop:disable Metrics/ClassLength
   setup do
     authenticate
     @entry = entries(:marcus_entry_one)
@@ -65,7 +65,7 @@ class EntriesControllerTest < ActionDispatch::IntegrationTest
 
   test 'should only get edit for entry of current user' do
     get edit_entry_url(@foreign_entry)
-    assert_response :unauthorized
+    assert_response :forbidden
   end
 
   test 'should not get edit if not authenticated' do
@@ -81,7 +81,7 @@ class EntriesControllerTest < ActionDispatch::IntegrationTest
 
   test 'should only update entry of current user using local form' do
     patch entry_url(@foreign_entry), xhr: false, params: { entry: @new_entry_params }
-    assert_response :unauthorized
+    assert_response :forbidden
   end
 
   test 'should not update entry using local form if not authenticated' do
@@ -97,7 +97,7 @@ class EntriesControllerTest < ActionDispatch::IntegrationTest
 
   test 'should only update entry of current user using remote form' do
     patch entry_url(@foreign_entry), xhr: true, params: { entry: @new_entry_params }
-    assert_response :unauthorized
+    assert_response :forbidden
   end
 
   test 'should not update entry using remote form if not authenticated' do
@@ -118,7 +118,7 @@ class EntriesControllerTest < ActionDispatch::IntegrationTest
     assert_no_difference 'Entry.count' do
       delete entry_url(@foreign_entry), xhr: true
     end
-    assert_response :unauthorized
+    assert_response :forbidden
 
     @foreign_entry.reload
     assert_not_nil @foreign_entry

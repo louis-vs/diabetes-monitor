@@ -58,7 +58,7 @@ class ShareTokensControllerTest < ActionDispatch::IntegrationTest
 
   test 'should only update share_tokens of authenticated user' do
     patch share_token_url(@foreign_share_token), xhr: true
-    assert_response :unauthorized
+    assert_response :forbidden
 
     @foreign_share_token.reload
     assert_not_equal 5, @foreign_share_token.uses_remaining
@@ -97,7 +97,7 @@ class ShareTokensControllerTest < ActionDispatch::IntegrationTest
       delete share_token_url(@foreign_share_token), xhr: true
     end
 
-    assert_response :unauthorized
+    assert_response :forbidden
   end
 
   test 'should not destroy share_token if not authenticated' do

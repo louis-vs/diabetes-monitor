@@ -75,6 +75,6 @@ class EntriesController < ApplicationController
 
   # Repond with 401 error if the user attempts to manipulate another user's entries
   def check_user
-    head :unauthorized unless current_user.id == @entry.user_id
+    head :forbidden unless current_user.id == @entry.user_id
   end
 end
