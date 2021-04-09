@@ -1,5 +1,5 @@
--#  locals: f entry date
-= form_with model: entry, local: false, namespace: "new_entry_#{date}_" do |f|
+-#  locals: f entry date (local)
+= form_with model: entry, local: (local_assigns[:local] ? true : false), namespace: "new_entry_#{date}_" do |f|
   .form-group.row
     = f.label :time, class: 'col-sm-2 col-form-label'
     .col-sm-5= f.datetime_select :time, order: [:day, :month, :year], end_year: Date.today.year, class: 'form-control'

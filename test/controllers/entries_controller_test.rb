@@ -58,6 +58,54 @@ class EntriesControllerTest < ActionDispatch::IntegrationTest
     assert_response :unauthorized
   end
 
+  test 'should get edit' do
+    get edit_entry_url(@entry)
+    assert_response :success
+  end
+
+  test 'should only get edit for entry of current user' do
+    get edit_entry_url(@foreign_entry)
+    assert_response :unauthorized
+  end
+
+  test 'should not get edit if not authenticated' do
+    deauthenticate
+    get edit_entry_url(@entry)
+    assert_redirected_to new_user_session_path
+  end
+
+  test 'should update entry using local form' do
+    patch entry_url(@entry), xhr: false, params: { entry: @new_entry_params }
+    assert_redirected_to entries_path
+  end
+
+  test 'should only update entry of current user using local form' do
+    patch entry_url(@foreign_entry), xhr: false, params: { entry: @new_entry_params }
+    assert_response :unauthorized
+  end
+
+  test 'should not update entry using local form if not authenticated' do
+    deauthenticate
+    patch entry_url(@entry), xhr: false, params: { entry: @new_entry_params }
+    assert_redirected_to new_user_session_path
+  end
+
+  test 'should update entry using remote form' do
+    patch entry_url(@entry), xhr: true, params: { entry: @new_entry_params }
+    assert_response :success
+  end
+
+  test 'should only update entry of current user using remote form' do
+    patch entry_url(@foreign_entry), xhr: true, params: { entry: @new_entry_params }
+    assert_response :unauthorized
+  end
+
+  test 'should not update entry using remote form if not authenticated' do
+    deauthenticate
+    patch entry_url(@entry), xhr: true, params: { entry: @new_entry_params }
+    assert_response :unauthorized
+  end
+
   test 'should destroy entry' do
     assert_difference 'Entry.count', -1 do
       delete entry_url(@entry), xhr: true

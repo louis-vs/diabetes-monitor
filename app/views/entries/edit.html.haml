@@ -1,5 +1,5 @@
 %h1 Editing entry
 
-= render 'form', entry: @entry, date: @entry.time.to_date
+= render 'form', entry: @entry, date: @entry.time.to_date, local: true
 
 = link_to 'Back', entries_path, class: 'btn btn-link'

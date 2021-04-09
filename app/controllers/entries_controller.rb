@@ -32,9 +32,6 @@ class EntriesController < ApplicationController
     @data[Time.zone.today.to_date] ||= []
   end
 
-  # GET /entries/1/edit
-  def edit; end
-
   # POST /entries
   def create
     @entries = Entry.where(user_id: current_user.id)
@@ -44,12 +41,18 @@ class EntriesController < ApplicationController
     @entry.save
   end
 
+  # GET /entries/1/edit
+  def edit; end
+
   # PATCH/PUT /entries/1
   def update
-    if @entry.update(entry_params)
-      redirect_to @entry, notice: 'Entry was successfully updated.'
-    else
-      render :edit
+    respond_to do |format|
+      if @entry.update(entry_params)
+        format.html { redirect_to entries_path, notice: 'Entry was successfully updated.' }
+      else
+        format.html { render :edit }
+      end
+      format.js
     end
   end
 

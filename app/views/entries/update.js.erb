@@ -1,0 +1,7 @@
+<% if @entry.errors.empty? %>
+  <%# render success message %>
+  $('#alerts').html("<%= j render partial: 'alert_update_success' %>");
+<% else %>
+  <%# render error message %>
+  $('#alerts').html("<%= j render partial: 'alert_update_error' %>");
+<% end %>
