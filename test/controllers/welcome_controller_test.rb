@@ -12,4 +12,16 @@ class WelcomeControllerTest < ActionDispatch::IntegrationTest
     get about_url
     assert_response :success
   end
+
+  test 'should get index when authenticated' do
+    authenticate
+    get root_url
+    assert_response :success
+  end
+
+  test 'should get about when authenticated' do
+    authenticate
+    get about_url
+    assert_response :success
+  end
 end
