@@ -1,6 +1,6 @@
 -# locals: entry
 %tr{ id: "entry_#{entry.id}" }
-  %td= time_tag entry.time, entry.time.to_formatted_s(:time)
+  %td= local_time entry.time, :time
   %td= entry.tag
   %td= entry.blood_sugar
   %td= entry.insulin

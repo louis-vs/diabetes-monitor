@@ -20,6 +20,7 @@
 import Rails from '@rails/ujs';
 import Turbolinks from 'turbolinks';
 import * as ActiveStorage from '@rails/activestorage';
+import LocalTime from 'local-time';
 
 // jQuery, $, and Popper are provided as plugins in /config/webpack/environment.js
 
@@ -31,9 +32,15 @@ import 'channels';
 Rails.start();
 Turbolinks.start();
 ActiveStorage.start();
+LocalTime.start();
 
 // expose jQuery to js.erb views
 window.$ = jQuery;
+
+// function to add time zone data to forms
+const addTimeZoneToForms = () => {
+  $('.input-time-zone').val(Intl.DateTimeFormat().resolvedOptions().timeZone);
+};
 
 // do things when page loads
 $(document).on('turbolinks:load', () => {
@@ -60,6 +67,9 @@ $(document).on('turbolinks:load', () => {
       </div>
     `);
   });
+
+  // add client time zone data to form
+  addTimeZoneToForms();
 });
 
 // bootstrap collapse: change text on event
@@ -80,7 +90,12 @@ $(document).on('hide.bs.collapse', (e) => {
   }
 });
 
-// fired when entry created, see /app/views/entries/create.js.erb
+// fired before entry created, see /app/views/entries/create.js.erb
 $(document).on('entries:create', () => {
   $('tr.table-success').removeClass('table-success');
+});
+
+// fire after entry created, see /app/views/entries/create.js.erb
+$(document).on('entries:created', () => {
+  addTimeZoneToForms();
 });

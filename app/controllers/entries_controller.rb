@@ -28,7 +28,7 @@ class EntriesController < ApplicationController
   def index
     @entries = Entry.where(user_id: current_user.id)
     # expose @data array of entries grouped by date for table { date: [objects] }
-    @data = @entries.sorted.group_by { |entry| entry.time.to_date }
+    @data = @entries.sorted.group_by { |entry| entry.time.to_date } # TODO: entry.time.in_time_zone(entry.time_zone).to_date
     @data[Time.zone.today.to_date] ||= []
   end
 
@@ -36,6 +36,15 @@ class EntriesController < ApplicationController
   def create
     @entries = Entry.where(user_id: current_user.id)
     @entry = Entry.new(entry_params)
+    # adjust time zone
+    @entry.time = @time_zone.local_to_utc(@entry.time)
+
+    # HOW I NEED TO DO TIME ZONES
+    # - store each entry with a time zone
+    # - in the data hash, group entries by day according to the time zone of each entry
+    # - use hidden field to set new entry's time zone - this can be done more cleanly than currently
+    # - in frontend, display times of each entry using each entry's time zone (write a helper for this)
+
     # enfore correct user
     @entry.user = current_user
     @entry.save
@@ -70,7 +79,10 @@ class EntriesController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def entry_params
-    params.require(:entry).permit(:time, :blood_sugar, :insulin, :tag, :notes)
+    strong_params = params.require(:entry).permit(:time_zone, :time, :blood_sugar, :insulin, :tag, :notes)
+    # extract time zone parameter
+    @time_zone = ActiveSupport::TimeZone[strong_params[:time_zone]] || Time.zone
+    strong_params.except :time_zone
   end
 
   # Repond with 401 error if the user attempts to manipulate another user's entries

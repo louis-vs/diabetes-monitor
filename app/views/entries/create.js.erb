@@ -21,6 +21,8 @@
     });
     <%# re-render form %>
     $("#form_<%= j @entry.time.to_date.to_formatted_s(:number) %>").html("<%= j render partial: 'form', locals: { entry: Entry.new(time: Time.now), date: @entry.time.to_date } %>")
+    <%# trigger js event %>
+    $(document).trigger('entries:created');
   }
 <% else %>
   <%# render error message %>
