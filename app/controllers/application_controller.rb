@@ -21,11 +21,21 @@
 # Controller base class
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
+  around_action :switch_locale
+
+  def default_url_options
+    { locale: (I18n.locale unless I18n.locale == I18n.default_locale) }
+  end
 
   protected
 
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: %i[name terms_of_service])
     devise_parameter_sanitizer.permit(:account_update, keys: [:name])
+  end
+
+  def switch_locale(&action)
+    locale = params[:locale] || I18n.default_locale
+    I18n.with_locale locale, &action
   end
 end
