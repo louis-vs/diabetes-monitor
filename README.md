@@ -6,7 +6,7 @@ A simple app to help record and monitor blood sugar and insulin levels over time
 
 ## Installation
 
-Make sure you have [Ruby](https://www.ruby-lang.org/) 2.7.2 and [Rails](https://rubyonrails.org/) 6.1 installed. You will also need [yarn](https://yarnpkg.com) to use Webpacker, which is needed for the website to run.
+Make sure you have [Ruby](https://www.ruby-lang.org/) 2.7.3 and [Rails](https://rubyonrails.org/) 6.1 installed. You will also need [yarn](https://yarnpkg.com) to use Webpacker, which is needed for the website to run.
 
 Download the source code, then from within the project's root folder run:
 
