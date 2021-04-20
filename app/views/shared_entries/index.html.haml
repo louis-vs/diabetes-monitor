@@ -3,10 +3,10 @@
 %p= t '.viewing_for_html', name: @user.name
 %p= t '.temp_link_info'
 - if user_signed_in?
-  %p= t '.cannot_edit_signed_in', link_tag: link_to(t('.view_entries_link_text'), entries_url)
+  %p= t '.cannot_edit_signed_in_html', link_tag: link_to(t('.view_entries_link_text'), entries_url)
 
 - else
-  %p= t '.cannot_edit', link_tag: link_to(t('.sign_up_link_text'), new_user_registration_url)
+  %p= t '.cannot_edit_html', link_tag: link_to(t('.sign_up_link_text'), new_user_registration_url)
 
 .table-responsive.border.border-dark
   %table.table.table-hover

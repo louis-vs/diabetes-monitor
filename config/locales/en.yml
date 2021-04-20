@@ -71,8 +71,8 @@ en:
       temp_link_info: >-
         You are accessing this page using a temporary link. It will expire after it
         is used too many times.
-      cannot_edit: "You cannot edit entries on this page. If you would like to create an account, please %{link_tag}."
-      cannot_edit_signed_in: "You cannot edit entries on this page. %{link_tag}."
+      cannot_edit_html: "You cannot edit entries on this page. If you would like to create an account, please %{link_tag}."
+      cannot_edit_signed_in_html: "You cannot edit entries on this page. %{link_tag}."
       sign_up_link_text: click here to sign up
       view_entries_link_text: Click here to access your personal entries
     shared_entry:
