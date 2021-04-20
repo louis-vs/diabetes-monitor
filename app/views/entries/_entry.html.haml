@@ -4,11 +4,11 @@
   %td= entry.tag
   %td= entry.blood_sugar
   %td= entry.insulin
-  %td= button_tag entry.notes == '' ? 'Add notes' : 'View notes', type: 'button', data: { toggle: 'collapse', target: "#notes_#{entry.id}", collapsetext: 'Hide', expandtext: (entry.notes == '' ? 'Add notes' : 'View notes') }, aria: { expanded: false, controls: "notes_#{entry.id}" }, class: 'btn btn-secondary btn-block'
-  %td= link_to 'Edit', edit_entry_path(entry), class: 'btn btn-warning btn-block'
+  %td= button_tag entry.notes == '' ? t('.add_notes') : t('.view_notes'), type: 'button', data: { toggle: 'collapse', target: "#notes_#{entry.id}", collapsetext: t('.collapse'), expandtext: (entry.notes == '' ? t('.add_notes') : t('.view_notes')) }, aria: { expanded: false, controls: "notes_#{entry.id}" }, class: 'btn btn-secondary btn-block'
+  %td= link_to t('.edit'), edit_entry_path(entry), class: 'btn btn-warning btn-block'
   %td
     = form_with model: entry, local: false, method: 'delete', namespace: "delete_#{entry.id}_" do |f|
-      = f.submit 'Delete', data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-block'
+      = f.submit 'Delete', data: { confirm: t('.delete_confirmation') }, class: 'btn btn-danger btn-block'
 %tr.collapse.toggle-expand-text{ id: "notes_#{entry.id}" }
   %td{ colspan: 7 }
     = form_with model: entry, local: false, namespace: "notes_#{entry.id}_" do |f|

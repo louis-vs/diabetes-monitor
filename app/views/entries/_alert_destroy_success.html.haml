@@ -1,2 +1,2 @@
 = render 'shared/alert', alert_type: 'alert-primary' do
-  = "Destroyed entry for #{time.to_s(:long_ordinal)}."
+  = t '.entry_destroy_success', time: time.to_s(:long_ordinal)

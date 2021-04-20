@@ -2,7 +2,7 @@
 %tr
   %td= time_tag date
   %td{ id: "num_readings_#{date.to_formatted_s(:number)}" }= entries.length
-  %td= button_tag 'Expand', type: 'button', data: { toggle: 'collapse', target: "#date_#{date.to_formatted_s(:number)}", collapsetext: 'Collapse', expandtext: 'Expand' }, aria: { expanded: false, controls: "date_#{date.to_formatted_s(:number)}" }, class: 'btn btn-primary btn-block'
+  %td= button_tag t('entries.day.expand'), type: 'button', data: { toggle: 'collapse', target: "#date_#{date.to_formatted_s(:number)}", collapsetext: t('entries.day.collapse'), expandtext: t('entries.day.expand') }, aria: { expanded: false, controls: "date_#{date.to_formatted_s(:number)}" }, class: 'btn btn-primary btn-block'
 %tr.collapse.toggle-expand-text{ id: "date_#{date.to_formatted_s(:number)}" }
   %td{ colspan: '5' }
     .table-responsive.border.border-dark

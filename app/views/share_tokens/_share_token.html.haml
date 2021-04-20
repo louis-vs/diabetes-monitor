@@ -11,14 +11,14 @@
                   %span.input-group-text https://#{ENV['HOSTNAME']}/shared_entries?token=
                 = f.text_field :token, disabled: true, class: 'form-control text-truncate'
                 .input-group-append
-                  = button_tag 'Copy', type: 'button', class: 'btn btn-secondary copy-button', data: { 'clipboard-text': "https://#{ENV['HOSTNAME']}/shared_entries?token=#{share_token.token}" }
+                  = button_tag t('.copy'), type: 'button', class: 'btn btn-secondary copy-button', data: { 'clipboard-text': "https://#{ENV['HOSTNAME']}/shared_entries?token=#{share_token.token}" }
             .col
               .input-group
                 .input-group-prepend
-                  %span.input-group-text Remaining uses:
+                  %span.input-group-text #{ShareToken.human_attribute_name('uses_remaining')}:
                 = f.text_field :uses_remaining, disabled: true, class: 'form-control'
                 .input-group-append
-                  = f.submit 'Reset remaining uses', class: 'btn btn-warning btn-block'
+                  = f.submit t('.reset_remaining_uses'), class: 'btn btn-warning btn-block'
       .col-12.mt-2.col-xl-2.mt-xl-0
         = form_with model: share_token, local: false, method: 'delete', namespace: "delete_token_#{share_token.id}_" do |f|
-          = f.submit 'Delete token', class: 'btn btn-danger btn-block'
+          = f.submit t('.delete'), class: 'btn btn-danger btn-block'
