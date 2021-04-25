@@ -25,7 +25,7 @@ class ShareTokensController < ApplicationController
   before_action :set_share_token, only: %i[update destroy]
   before_action :check_user, only: %i[update destroy]
 
-  MAX_TOKEN_USES = 5
+  MAX_TOKEN_USES = 10
 
   # GET /share_tokens
   def index

@@ -52,7 +52,7 @@ class ShareTokensControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
 
     @share_token.reload
-    assert_equal 5, @share_token.uses_remaining
+    assert_equal 10, @share_token.uses_remaining
     assert_equal @user.id, @share_token.user.id
   end
 
@@ -61,7 +61,7 @@ class ShareTokensControllerTest < ActionDispatch::IntegrationTest
     assert_response :forbidden
 
     @foreign_share_token.reload
-    assert_not_equal 5, @foreign_share_token.uses_remaining
+    assert_not_equal 10, @foreign_share_token.uses_remaining
     assert_not_equal @user.id, @foreign_share_token.user.id
   end
 
@@ -70,7 +70,7 @@ class ShareTokensControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
 
     @share_token.reload
-    assert_equal 5, @share_token.uses_remaining
+    assert_equal 10, @share_token.uses_remaining
     assert_equal @user.id, @share_token.user.id
     assert_empty users(:juliet).share_tokens
   end
