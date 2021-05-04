@@ -32,3 +32,6 @@ yarn-debug.log*
 
 # Ignore local environment
 .env*
+
+# Ignore code coverage files
+/coverage/*
