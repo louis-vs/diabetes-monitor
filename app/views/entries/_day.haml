@@ -3,7 +3,6 @@
   %td= time_tag date
   %td{ id: "num_readings_#{date.to_formatted_s(:number)}" }= entries.length
   %td= button_tag t('.expand'), type: 'button', data: { toggle: 'collapse', target: "#date_#{date.to_formatted_s(:number)}", collapsetext: t('.collapse'), expandtext: t('.expand') }, aria: { expanded: false, controls: "date_#{date.to_formatted_s(:number)}" }, class: 'btn btn-primary btn-block'
-  %td delete all
 %tr.collapse.toggle-expand-text{ id: "date_#{date.to_formatted_s(:number)}" }
   %td{ colspan: '5' }
     .table-responsive.border.border-dark
