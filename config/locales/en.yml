@@ -10,6 +10,32 @@ en:
       sign_up: Sign up now
       login: Login
     about:
+    cookies:
+      title: This website uses cookies
+      explanation_html: >-
+        We use a single cookie, <code>_diabetes_monitor_session</code>, in
+        order to track your session. This contains a single string of
+        characters, which links to an entry in our database. It is necessary
+        to allow you to log in, and for the site to function. We do not use any
+        other cookies, for tracking or any other purpose.
+    terms:
+      title: Terms of Service
+      text: >-
+        THIS SERVICE IS PROVIDED AS-IS. This service is a proof-of-concept,
+        and does not provide any medical advice. It's use is entirely at your
+        own risk.
+      data: >-
+        With the exception of your password, all of your data is stored in
+        an unencrypted format on our servers. We have taken appropriate
+        measures to secure this database; however, if a malicious person gains
+        access to the database, your data (but not your password) may be
+        exposed.
+      consent: By signing up, you consent to these terms.
+      termination: >-
+        You may terminate your account at any time in your profile. This will
+        delete all associated data in our database. HOWEVER, data stored in
+        backups may not be deleted.
+
   shared:
     alert:
       entry_create_error: Error adding new entry.

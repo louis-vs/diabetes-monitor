@@ -5,6 +5,8 @@ Rails.application.routes.draw do
 
   root 'welcome#index'
   get 'about', to: 'welcome#about'
+  get 'cookies', to: 'welcome#cookies'
+  get 'terms', to: 'welcome#terms'
   get 'shared_entries', to: 'shared_entries#index'
 
   resources :entries, only: %i[index create edit update destroy]
