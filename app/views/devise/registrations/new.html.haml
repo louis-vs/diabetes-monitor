@@ -20,8 +20,7 @@
     .col-sm-8.offset-sm-2
       .form-check
         = f.check_box :terms_of_service, class: 'form-check-input'
-        -# TODO: add terms of service route
-        = f.label :terms_of_service, t('.terms_of_service_html', link_tag: "TBC"), class: 'form-check-label'
+        = f.label :terms_of_service, t('.terms_of_service_html', link_tag: link_to(t('.terms_of_service'), terms_path)), class: 'form-check-label'
   .form-group.row
     .col-sm-8= f.submit t('.sign_up'), class: 'btn btn-primary'
 = render 'devise/shared/links'
