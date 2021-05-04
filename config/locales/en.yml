@@ -1,33 +1,106 @@
-# Files in the config/locales directory are used for internationalization
-# and are automatically loaded by Rails. If you want to use locales other
-# than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t 'hello'
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t('hello') %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# The following keys must be escaped otherwise they will not be retrieved by
-# the default I18n backend:
-#
-# true, false, on, off, yes, no
-#
-# Instead, surround them with single quotes.
-#
-# en:
-#   'true': 'foo'
-#
-# To learn more, please read the Rails Internationalization guide
-# available at https://guides.rubyonrails.org/i18n.html.
-
 en:
   hello: "Hello world"
+  welcome:
+    index:
+      welcome: Welcome
+      welcome_user: "Welcome, %{name}."
+      lead: This app does cool stuff.
+      view_log: View your log
+      need_account: You need to have an account to use this app.
+      sign_up: Sign up now
+      login: Login
+    about:
+  shared:
+    alert:
+      entry_create_error: Error adding new entry.
+      entry_create_success: "Successfully added new entry for %{time}."
+      entry_destroy_error: Error destroying entry.
+      entry_destroy_success: "Destroyed entry for %{time}"
+      entry_update_error: Error saving notes.
+      entry_update_success: Saved notes.
+      share_token_create_error: Error generating share link.
+      share_token_create_success: Successfully added new token.
+      share_token_destroy_error: Error destroying token.
+      share_token_destroy_success: Destroyed token.
+      share_token_update_error: Error updating token.
+      share_token_update_success: Successfully updated token.
+  entries:
+    index:
+      share: Share
+    update:
+      success: Entry was successfully updated.
+    edit:
+      back: Back to index
+    day:
+      expand: Expand
+      collapse: Collapse
+    entry:
+      add_notes: Add notes
+      view_notes: View notes
+      collapse: Hide
+      edit: Edit
+      delete_confirmation: Are you sure you want to delete this entry?
+    form:
+      save: Save
+    table_head:
+      date: Date
+      num_readings: Number of readings
+  share_tokens:
+    index:
+      title: Share Links
+      your_links: Your links
+      no_links: You have no active share links.
+      generate: Generate token
+      guide: >-
+        You can generate links on this page which you can use to share your data with someone else.
+        For security and privacy reasons, these links have a limited number of uses. Once a link has
+        expired, you will need to generate a new link if you would like to continue sharing.
+
+    form:
+      error_explanation: "%{errors_with_num} prohibited this share_token from being saved:"
+      save: Save
+    share_token:
+      copy: Copy
+      reset_remaining_uses: Reset remaining uses
+      delete: Delete token
+  shared_entries:
+    index:
+      access_denied: Access denied. Your share link may have expired.
+      title: Log entries
+      viewing_for_html: "You are viewing entries for <strong>%{name}</strong>."
+      temp_link_info: >-
+        You are accessing this page using a temporary link. It will expire after it
+        is used too many times.
+      cannot_edit_html: "You cannot edit entries on this page. If you would like to create an account, please %{link_tag}."
+      cannot_edit_signed_in_html: "You cannot edit entries on this page. %{link_tag}."
+      sign_up_link_text: click here to sign up
+      view_entries_link_text: Click here to access your personal entries
+    shared_entry:
+      no_notes: No notes found.
+  activerecord:
+    models:
+      entry:
+        one: Entry
+        other: Entries
+      share_token:
+        one: Share Token
+        other: Share Tokens
+      user:
+        one: User
+        other: Users
+    attributes:
+      entry:
+        time: Time
+        blood_sugar: Blood Sugar
+        insulin: Insulin
+        tag: Tag
+        notes: Notes
+        user: User
+      share_token:
+        token: Token
+        uses_remaining: Uses Remaining
+        user: User
+      user:
+        email: Email
+        name: Name
+        password: Password

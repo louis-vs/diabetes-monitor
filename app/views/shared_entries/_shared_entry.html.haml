@@ -4,7 +4,7 @@
   %td= entry.tag
   %td= entry.blood_sugar
   %td= entry.insulin
-  %td= button_tag 'View notes', type: 'button', data: { toggle: 'collapse', target: "#notes_#{entry.id}", collapsetext: 'Hide', expandtext: 'View notes' }, aria: { expanded: false, controls: "notes_#{entry.id}" }, class: 'btn btn-secondary btn-block'
+  %td= button_tag t('entries.entry.view_notes'), type: 'button', data: { toggle: 'collapse', target: "#notes_#{entry.id}", collapsetext: t('entries.entry.collapse'), expandtext: t('entries.entry.view_notes') }, aria: { expanded: false, controls: "notes_#{entry.id}" }, class: 'btn btn-secondary btn-block'
 %tr.collapse.toggle-expand-text{ id: "notes_#{entry.id}" }
   %td{ colspan: 7 }
-    = entry.notes == '' ? content_tag(:em, 'No notes found.') : entry.notes
+    = entry.notes == '' ? content_tag(:em, t('.no_notes')) : entry.notes

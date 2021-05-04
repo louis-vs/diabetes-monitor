@@ -33,7 +33,7 @@ class SharedEntriesController < ApplicationController
   private
 
   def redirect_with_error
-    redirect_to root_path, alert: 'Access denied. Your shared link may have expired.'
+    redirect_to root_path, alert: t('.access_denied')
   end
 
   def authenticate_share_token

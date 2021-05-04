@@ -2,14 +2,14 @@
   .container
     %h1.display-4
       - if user_signed_in?
-        Welcome, #{current_user.name}
+        = t '.welcome_user', name: current_user.name
       - else
-        Welcome
-    %p.lead This app does cool stuff.
+        = t '.welcome'
+    %p.lead= t '.lead'
     %hr.my-4
     - if user_signed_in?
-      = link_to 'View your log', entries_path, class: 'btn btn-primary btn-lg'
+      = link_to t('.view_log'), entries_path, class: 'btn btn-primary btn-lg'
     - else
-      %p You need to have an account to use this app.
-      = link_to 'Sign up now', new_user_registration_path, class: 'btn btn-primary btn-lg'
-      = link_to 'Login', new_user_session_path, class: 'btn btn-secondary btn-lg'
+      %p= t '.need_account'
+      = link_to t('.sign_up'), new_user_registration_path, class: 'btn btn-primary btn-lg'
+      = link_to t('.login'), new_user_session_path, class: 'btn btn-secondary btn-lg'
