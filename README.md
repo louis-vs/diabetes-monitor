@@ -40,4 +40,4 @@ $ mailcatcher
 
 ## Licence
 
-The source code in this repository is licensed under GPLv3-only.
+The source code in this repository is licensed under AGPLv3-only.
