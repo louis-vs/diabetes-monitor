@@ -24,7 +24,7 @@ group :development do
   # gem 'rack-mini-profiler', '~> 2.0'
   gem 'rubocop', '~> 1.13'
   gem 'rubocop-performance', '~> 1.11'
-  gem 'rubocop-rails', '~> 2.8'
+  gem 'rubocop-rails', '~> 2.10'
   gem 'spring'
   gem 'web-console', '~> 4.1.0'
 end
