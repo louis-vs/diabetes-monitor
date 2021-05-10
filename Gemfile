@@ -9,7 +9,7 @@ gem 'bootsnap', '~> 1.7.5', require: false
 gem 'devise'
 gem 'haml-rails', '~> 2.0'
 gem 'pg', '~> 1.1'
-gem 'puma', '~> 5.2'
+gem 'puma', '~> 5.3'
 gem 'rails', '~> 6.1.3'
 gem 'rails-i18n', '~> 6.0'
 gem 'sass-rails', '~> 6'
