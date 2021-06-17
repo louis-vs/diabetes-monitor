@@ -3,11 +3,13 @@ marcus:
   email: marcus@atherton.org
   name: Marcus Atherton
   encrypted_password: <%= default_password_encrypted %>
+  confirmed_at: 2020-01-01T12:00
 
 juliet:
   email: juliet@thecapulets.org
   name: Juliet Capulet
   encrypted_password: <%= default_password_encrypted %>
+  confirmed_at: 2020-01-01T12:00
 
 # generic users
 <% 100.times do |n| %>
@@ -15,4 +17,5 @@ user_<%= n %>:
   email: <%= "user#{n}@example.com" %>
   name: <%= "user#{n}" %>
   encrypted_password: <%= default_password_encrypted %>
+  confirmed_at: 2020-01-01T12:00
 <% end %>

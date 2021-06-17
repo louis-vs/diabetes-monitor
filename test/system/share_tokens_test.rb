@@ -4,46 +4,33 @@ require 'application_system_test_case'
 
 class ShareTokensTest < ApplicationSystemTestCase
   setup do
-    @share_token = share_tokens(:one)
+    @share_token = share_tokens(:marcus_token_one)
+    authenticate
   end
 
   test 'visiting the index' do
     visit share_tokens_url
-    assert_selector 'h1', text: 'Share Tokens'
+    assert_selector 'h1', text: 'Share Links'
   end
 
   test 'creating a Share token' do
     visit share_tokens_url
-    click_on 'New Share Token'
+    click_on 'Generate token'
 
-    fill_in 'Token', with: @share_token.token
-    fill_in 'User', with: @share_token.user_id
-    fill_in 'Uses remaining', with: @share_token.uses_remaining
-    click_on 'Create Share token'
-
-    assert_text 'Share token was successfully created'
-    click_on 'Back'
+    assert_text 'Successfully added new token'
   end
 
-  test 'updating a Share token' do
+  test 'reset a Share token' do
     visit share_tokens_url
-    click_on 'Edit', match: :first
+    click_on 'Reset remaining uses', match: :first
 
-    fill_in 'Token', with: @share_token.token
-    fill_in 'User', with: @share_token.user_id
-    fill_in 'Uses remaining', with: @share_token.uses_remaining
-    click_on 'Update Share token'
-
-    assert_text 'Share token was successfully updated'
-    click_on 'Back'
+    assert_text 'Successfully updated token'
   end
 
   test 'destroying a Share token' do
     visit share_tokens_url
-    page.accept_confirm do
-      click_on 'Destroy', match: :first
-    end
+    click_on 'Delete token', match: :first
 
-    assert_text 'Share token was successfully destroyed'
+    assert_text 'Destroyed token'
   end
 end

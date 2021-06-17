@@ -8,6 +8,6 @@
   %table.table.table-hover
     = render 'table_head'
 
-    %tbody
+    %tbody#entries
       - @data.keys.sort.reverse_each do |date|
         = render partial: 'day', locals: { date: date, entries: @data[date] }

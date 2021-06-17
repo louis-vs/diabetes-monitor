@@ -2,7 +2,7 @@
 
 module TestPasswordHelper
   def default_password_encrypted
-    User.new.send(:password_digest, default_password)
+    Devise::Encryptor.digest(User, 'password')
   end
 
   def default_password

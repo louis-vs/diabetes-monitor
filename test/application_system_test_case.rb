@@ -12,14 +12,14 @@ end
 class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
   include TestPasswordHelper
 
-  driven_by :selenium, using: :headless_chrome, screen_size: [1400, 800]
+  driven_by :selenium, using: :firefox, screen_size: [1400, 800]
 
   def authenticate
     @user = users(:marcus)
     visit new_user_session_path
     within '.login-fields' do
-      fill_in 'email', with: @user.email
-      fill_in 'password', with: default_password
+      fill_in 'user_email', with: @user.email
+      fill_in 'user_password', with: default_password
     end
     click_on 'Log in'
   end

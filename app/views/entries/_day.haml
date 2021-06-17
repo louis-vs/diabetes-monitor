@@ -1,5 +1,5 @@
 -# locals: date entries
-%tr
+%tr{ id: "row_#{date.to_formatted_s(:number)}" }
   %td= time_tag date
   %td{ id: "num_readings_#{date.to_formatted_s(:number)}" }= entries.length
   %td= button_tag t('.expand'), type: 'button', data: { toggle: 'collapse', target: "#date_#{date.to_formatted_s(:number)}", collapsetext: t('.collapse'), expandtext: t('.expand') }, aria: { expanded: false, controls: "date_#{date.to_formatted_s(:number)}" }, class: 'btn btn-primary btn-block'

@@ -4,50 +4,54 @@ require 'application_system_test_case'
 
 class EntriesTest < ApplicationSystemTestCase
   setup do
-    @entry = entries(:one)
+    @entry = entries(:marcus_entry_one)
+    authenticate
   end
 
   test 'visiting the index' do
     visit entries_url
-    assert_selector 'h1', text: 'Entries'
+    assert_selector 'h1', text: 'Log entries'
   end
 
-  test 'creating a Entry' do
+  test 'creating an Entry' do
     visit entries_url
-    click_on 'New Entry'
+    click_on 'Expand', match: :first
+    click_on 'New entry', match: :first
 
-    fill_in 'Blood sugar', with: @entry.blood_sugar
+    fill_in 'Blood Sugar', with: @entry.blood_sugar
     fill_in 'Insulin', with: @entry.insulin
-    fill_in 'Time', with: @entry.time
-    fill_in 'Type', with: @entry.type
-    fill_in 'User', with: @entry.user_id
-    click_on 'Create Entry'
+    select 'Morning', from: 'Tag'
+    fill_in 'Notes', with: @entry.notes
+    click_on 'Save'
 
-    assert_text 'Entry was successfully created'
-    click_on 'Back'
+    assert_text 'Successfully added new entry'
   end
 
-  test 'updating a Entry' do
+  test 'updating an Entry' do
     visit entries_url
+    within "#row_#{@entry.time.to_formatted_s(:number)[0..7]}" do
+      click_on 'Expand', match: :first
+    end
     click_on 'Edit', match: :first
 
-    fill_in 'Blood sugar', with: @entry.blood_sugar
+    fill_in 'Blood Sugar', with: @entry.blood_sugar
     fill_in 'Insulin', with: @entry.insulin
-    fill_in 'Time', with: @entry.time
-    fill_in 'Type', with: @entry.type
-    fill_in 'User', with: @entry.user_id
-    click_on 'Update Entry'
+    select 'Morning', from: 'Tag'
+    fill_in 'Notes', with: @entry.notes
+    click_on 'Save'
 
     assert_text 'Entry was successfully updated'
-    click_on 'Back'
   end
 
-  test 'destroying a Entry' do
+  test 'destroying an Entry' do
     visit entries_url
+    within "#row_#{@entry.time.to_formatted_s(:number)[0..7]}" do
+      click_on 'Expand', match: :first
+    end
     page.accept_confirm do
-      click_on 'Destroy', match: :first
+      click_on 'Delete', match: :first
     end
 
-    assert_text 'Entry was successfully destroyed'
+    assert_text 'Destroyed entry'
   end
 end
