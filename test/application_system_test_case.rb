@@ -12,7 +12,7 @@ end
 class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
   include TestPasswordHelper
 
-  driven_by :selenium, using: :firefox, screen_size: [1400, 800]
+  driven_by :selenium, using: ENV['CI'] ? :headless_chrome : :firefox, screen_size: [1400, 800]
 
   def authenticate
     @user = users(:marcus)
