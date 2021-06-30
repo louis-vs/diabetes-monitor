@@ -22,7 +22,7 @@ end
 group :development do
   gem 'listen', '~> 3.5'
   # gem 'rack-mini-profiler', '~> 2.0'
-  gem 'rubocop', '~> 1.17'
+  gem 'rubocop', '~> 1.18'
   gem 'rubocop-performance', '~> 1.11'
   gem 'rubocop-rails', '~> 2.10'
   gem 'spring'
