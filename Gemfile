@@ -20,7 +20,7 @@ group :development, :test do
 end
 
 group :development do
-  gem 'listen', '~> 3.5'
+  gem 'listen', '~> 3.6'
   # gem 'rack-mini-profiler', '~> 2.0'
   gem 'rubocop', '~> 1.18'
   gem 'rubocop-performance', '~> 1.11'
