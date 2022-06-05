@@ -3,17 +3,15 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.7.3'
+ruby '3.1.2'
 
 gem 'bootsnap', '~> 1.7.6', require: false
 gem 'devise'
 gem 'haml-rails', '~> 2.0'
 gem 'pg', '~> 1.1'
 gem 'puma', '~> 5.4'
-gem 'rails', '~> 6.1.4'
-gem 'rails-i18n', '~> 6.0'
-gem 'sass-rails', '~> 6'
-gem 'webpacker', '~> 5.4'
+gem 'rails', '~> 7.0'
+gem 'rails-i18n', '~> 7.0'
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
@@ -25,14 +23,14 @@ group :development do
   gem 'rubocop', '~> 1.18'
   gem 'rubocop-performance', '~> 1.11'
   gem 'rubocop-rails', '~> 2.11'
-  gem 'spring'
+  gem 'spring', '~> 4.0'
   gem 'web-console', '~> 4.1.0'
 end
 
 group :test do
   gem 'capybara', '~> 3.26'
   gem 'codecov', '~> 0.6'
-  gem 'minitest-rails', '~> 6.1'
+  gem 'minitest-rails', '~> 7.0'
   gem 'minitest-reporters', '~> 1.4'
   gem 'selenium-webdriver', '~> 3.142'
   gem 'simplecov', '~> 0.21'
