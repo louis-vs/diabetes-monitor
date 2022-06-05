@@ -10,20 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[6.1].define(version: 2021_04_08_140205) do
-
+ActiveRecord::Schema[7.0].define(version: 2022_06_05_131006) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "entries", force: :cascade do |t|
-    t.datetime "time", default: -> { "CURRENT_TIMESTAMP" }, null: false
+    t.datetime "time", precision: nil, default: -> { "CURRENT_TIMESTAMP" }, null: false
     t.decimal "blood_sugar", default: "0.0", null: false
     t.decimal "insulin", default: "0.0", null: false
     t.integer "tag", default: 0, null: false
     t.text "notes", default: "", null: false
     t.bigint "user_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_entries_on_user_id"
   end
 
@@ -31,8 +30,8 @@ ActiveRecord::Schema[6.1].define(version: 2021_04_08_140205) do
     t.bigint "user_id", null: false
     t.string "token", default: "", null: false
     t.integer "uses_remaining", default: 0, null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["token"], name: "index_share_tokens_on_token", unique: true
     t.index ["user_id"], name: "index_share_tokens_on_user_id"
   end
@@ -41,14 +40,14 @@ ActiveRecord::Schema[6.1].define(version: 2021_04_08_140205) do
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "reset_password_sent_at", precision: nil
+    t.datetime "remember_created_at", precision: nil
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.string "name"
     t.string "confirmation_token"
-    t.datetime "confirmed_at"
-    t.datetime "confirmation_sent_at"
+    t.datetime "confirmed_at", precision: nil
+    t.datetime "confirmation_sent_at", precision: nil
     t.string "unconfirmed_email"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true

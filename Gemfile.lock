@@ -125,9 +125,6 @@ GEM
       ruby_parser (~> 3.5)
     i18n (1.10.0)
       concurrent-ruby (~> 1.0)
-    importmap-rails (1.1.0)
-      actionpack (>= 6.0.0)
-      railties (>= 6.0.0)
     jsbundling-rails (1.0.2)
       railties (>= 6.0.0)
     listen (3.7.1)
@@ -223,6 +220,7 @@ GEM
     rb-fsevent (0.11.1)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
+    redis (4.6.0)
     regexp_parser (2.5.0)
     responders (3.0.1)
       actionpack (>= 5.0)
@@ -301,7 +299,6 @@ DEPENDENCIES
   devise
   dotenv-rails (~> 2.7)
   haml-rails (~> 2.0)
-  importmap-rails (~> 1.1)
   jsbundling-rails
   listen (~> 3.6)
   minitest-rails (~> 7.0)
@@ -312,6 +309,7 @@ DEPENDENCIES
   rack-timeout (~> 0.6)
   rails (~> 7.0)
   rails-i18n (~> 7.0)
+  redis (~> 4.0)
   rubocop (~> 1.18)
   rubocop-performance (~> 1.11)
   rubocop-rails (~> 2.11)

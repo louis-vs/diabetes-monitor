@@ -14,9 +14,8 @@ gem 'rails', '~> 7.0'
 gem 'rails-i18n', '~> 7.0'
 gem 'stimulus-rails', '~> 1.0'
 gem 'turbo-rails', '~> 1.1'
-gem 'importmap-rails', '~> 1.1'
-gem 'jsbundling-rails'
 gem 'cssbundling-rails'
+gem 'jsbundling-rails'
 gem 'propshaft'
 
 group :development, :test do
@@ -49,3 +48,6 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
+
+# Use Redis for Action Cable
+gem "redis", "~> 4.0"
