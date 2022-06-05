@@ -12,6 +12,12 @@ gem 'pg', '~> 1.1'
 gem 'puma', '~> 5.4'
 gem 'rails', '~> 7.0'
 gem 'rails-i18n', '~> 7.0'
+gem 'stimulus-rails', '~> 1.0'
+gem 'turbo-rails', '~> 1.1'
+gem 'importmap-rails', '~> 1.1'
+gem 'jsbundling-rails'
+gem 'cssbundling-rails'
+gem 'propshaft'
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]

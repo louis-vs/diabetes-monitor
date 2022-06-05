@@ -35,3 +35,9 @@ yarn-debug.log*
 
 # Ignore code coverage files
 /coverage/*
+
+# Ignore OSX metadata
+.DS_Store
+
+/app/assets/builds/*
+!/app/assets/builds/.keep
