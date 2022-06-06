@@ -1,9 +1,9 @@
 !!!
 %html
   %head
-    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{content: 'text/html; charset=UTF-8', 'http-equiv': 'Content-Type'}
     %title Diabetes Monitor
-    %meta{:content => "width=device-width,initial-scale=1", :name => "viewport"}/
+    %meta{name: 'viewport', content: 'width=device-width, initial-scale=1, shrink-to-fit=no'}
     = csrf_meta_tags
     = csp_meta_tag
     = stylesheet_link_tag 'application', 'data-turbo-track': 'reload'
@@ -14,7 +14,7 @@
         = render 'navigation'
     %main.pt-2
       .container
-        #alerts.sticky-top{ data: { 'turbolinks-permanent': true } }
+        #alerts.sticky-top
           - if notice
             = render 'shared/alert', alert_type: 'alert-primary' do
               = notice

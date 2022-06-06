@@ -1,11 +1,11 @@
-.jumbotron.jumbotron-fluid
+.p-5.mb-4.bg-light.rounded-3
   .container
     %h1.display-4
       - if user_signed_in?
         = t '.welcome_user', name: current_user.name
       - else
         = t '.welcome'
-    %p.lead= t '.lead'
+    %p.col-md-8.fs-4= t '.lead'
     %hr.my-4
     - if user_signed_in?
       = link_to t('.view_log'), entries_path, class: 'btn btn-primary btn-lg'
