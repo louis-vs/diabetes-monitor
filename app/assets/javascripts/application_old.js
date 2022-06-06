@@ -17,70 +17,34 @@
 //++
 
 
-import Rails from '@rails/ujs';
-import Turbolinks from 'turbolinks';
-import * as ActiveStorage from '@rails/activestorage';
-
-// jQuery, $, and Popper are provided as plugins in /config/webpack/environment.js
-
-import 'bootstrap';
-import ClipboardJS from 'clipboard';
-
-import 'channels';
-
-Rails.start();
-Turbolinks.start();
-ActiveStorage.start();
-
-// expose jQuery to js.erb views
-window.$ = jQuery;
-
 // do things when page loads
-$(document).on('turbolinks:load', () => {
-  let clipboard = new ClipboardJS('.copy-button');
-
-  // clipboard.js: alert user about success or failure
-  clipboard.on('success', () => {
-    $('#alerts').html(`
-      <div class="alert alert-success alert-dismissable fade show" role="alert">
-        Copied to clipboard!
-        <button type="button" class="close" data-dismiss="alert" aria-label="close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-    `);
-  });
-  clipboard.on('error', () => {
-    $('#alerts').html(`
-      <div class="alert alert-danger alert-dismissable fade show" role="alert">
-        Failed to copy to clipboard.
-        <button type="button" class="close" data-dismiss="alert" aria-label="close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-    `);
-  });
-});
-
-// bootstrap collapse: change text on event
-$(document).on('show.bs.collapse', (e) => {
-  if(e.target.classList.contains('toggle-expand-text')) {
-    // find the element which targets the expanded element
-    let expandBtn = $(`[data-target="#${e.target.id}"]`);
-    // change text
-    expandBtn.html($(expandBtn).data('collapsetext'));
-  }
-});
-$(document).on('hide.bs.collapse', (e) => {
-  if(e.target.classList.contains('toggle-expand-text')) {
-    // find the element which targets the collapsed element
-    let collapseBtn = $(`[data-target="#${e.target.id}"]`);
-    // change text
-    collapseBtn.html($(collapseBtn).data('expandtext'));
-  }
-});
+// $(document).on('turbolinks:load', () => {
+//   let clipboard = new ClipboardJS('.copy-button');
+//
+//   // clipboard.js: alert user about success or failure
+//   clipboard.on('success', () => {
+//     $('#alerts').html(`
+//       <div class="alert alert-success alert-dismissable fade show" role="alert">
+//         Copied to clipboard!
+//         <button type="button" class="close" data-dismiss="alert" aria-label="close">
+//           <span aria-hidden="true">&times;</span>
+//         </button>
+//       </div>
+//     `);
+//   });
+//   clipboard.on('error', () => {
+//     $('#alerts').html(`
+//       <div class="alert alert-danger alert-dismissable fade show" role="alert">
+//         Failed to copy to clipboard.
+//         <button type="button" class="close" data-dismiss="alert" aria-label="close">
+//           <span aria-hidden="true">&times;</span>
+//         </button>
+//       </div>
+//     `);
+//   });
+// });
 
 // fired when entry created, see /app/views/entries/create.js.erb
-$(document).on('entries:create', () => {
-  $('tr.table-success').removeClass('table-success');
-});
+// $(document).on('entries:create', () => {
+//   $('tr.table-success').removeClass('table-success');
+// });
