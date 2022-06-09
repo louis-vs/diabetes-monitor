@@ -14,12 +14,6 @@
         = render 'navigation'
     %main.pt-2
       .container
-        #alerts.sticky-top
-          - if notice
-            = render 'shared/alert', alert_type: 'alert-primary' do
-              = notice
-          - if alert
-            = render 'shared/alert', alert_type: 'alert-danger' do
-              = alert
+        = render 'flash'
         = yield
     = render 'footer'

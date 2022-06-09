@@ -53,10 +53,14 @@ en:
   entries:
     index:
       share: Share
+    create:
+      success: Entry was successfully created.
     update:
       success: Entry was successfully updated.
     edit:
       back: Back to index
+    destroy:
+      success: Entry was successfully deleted.
     day:
       expand: Expand
       collapse: Collapse
@@ -66,7 +70,7 @@ en:
       collapse: Hide
       edit: Edit
       delete_confirmation: Are you sure you want to delete this entry?
-    form:
+    form_component:
       save: Save
     table_head:
       date: Date
@@ -130,3 +134,9 @@ en:
         email: Email
         name: Name
         password: Password
+  date:
+    formats:
+      en_slash: "%d/%m/%y"
+  time:
+    formats:
+      time: "%H:%M"

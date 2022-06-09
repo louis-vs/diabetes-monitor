@@ -1,0 +1,13 @@
+= turbo_frame_tag card_id(@date) do
+  = render CardComponent.new do |card|
+    - card.with_header do |header|
+      - header.with_title(title: time_tag(@date, format: :en_slash),
+                          subtitle: today?(@date) ? 'today' : '', subtitle_colour: 'info')
+
+    - card.with_subcards(id: card_entries_id(@date)) do |group|
+      - @entries.each do |entry|
+        - group.with_card do
+          = lazy_turbo_frame_tag card_entry_id(@date, entry), src: entry_path(entry)
+
+      - group.with_last_card do
+        = lazy_turbo_frame_tag card_new_entry_id(@date), src: blank_new_entry_path(date: date_to_param(@date))

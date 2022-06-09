@@ -1,0 +1,29 @@
+= form_with model: @entry, namespace: "#{helpers.card_entry_form_id(@entry)}__",
+            id: helpers.card_entry_form_id(@entry)  do |f|
+  = render Cards::ListComponent.new do |list|
+    - list.with_item do
+      .form-group.row
+        = f.label :time, class: 'col-sm-4 col-form-label'
+        .col-sm-8= f.datetime_select :time, order: [:day, :month, :year], end_year: Date.today.year, class: 'form-control'
+    - list.with_item do
+      .form-group.row
+        = f.label :tag, class: 'col-sm-4 col-form-label'
+        .col-sm-8= f.select :tag, Entry.tags.keys.map { |key| [key.humanize, key] }, class: 'form-control'
+    - list.with_item do
+      .form-group.row
+        = f.label :blood_sugar, class: 'col-sm-4 col-form-label'
+        .col-sm-8= f.number_field :blood_sugar, min: 0, step: 0.1, value: '0', class: 'form-control'
+    - list.with_item do
+      .form-group.row
+        = f.label :insulin, class: 'col-sm-4 col-form-label'
+        .col-sm-8= f.number_field :insulin, min: 0, step: 0.5, value: '0', class: 'form-control'
+    - list.with_item do
+      .form-group.row
+        = f.label :notes, class: 'col-sm-4 col-form-label'
+        .col-sm-8= f.text_area :notes, class: 'form-control'
+.form-group.row.m-2
+  .col-sm-12.d-flex.justify-content-start
+    = submit_tag t('.save'), class: 'btn btn-success btn-block',
+                 form: helpers.card_entry_form_id(@entry)
+    .flex-grow-1.ms-4= cancel_button
+    .text-end= delete_button

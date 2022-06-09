@@ -1,0 +1,4 @@
+= turbo_frame_tag card_new_entry_id(@date) do
+  = render CardComponent.new(last: true) do |new_subcard|
+    - new_subcard.with_action_group do |action_group|
+      - action_group.with_action(name: 'New', path: new_entry_path, params: { date: date_to_param(@date) }, classes: 'me-5')

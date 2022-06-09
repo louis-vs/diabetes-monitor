@@ -1,13 +1,12 @@
 %h1 Log entries
 
 = link_to share_tokens_url, class: 'btn btn-info mb-2 mt-2' do
-  %i.bi.bi-share.mr-1
-  = t '.share'
+  = bs_icon 'share'
+  .ml-1= t '.share'
 
-.table-responsive.border.border-dark
-  %table.table.table-hover
-    = render 'table_head'
+= lazy_turbo_frame_tag card_new_entry_id(nil), src: blank_new_entry_path
 
-    %tbody#entries
-      - @data.keys.sort.reverse_each do |date|
-        = render partial: 'day', locals: { date: date, entries: @data[date] }
+= render CardGroupComponent.new do |group|
+  - @date_totals.each do |date, total|
+    - group.with_card do
+      = lazy_turbo_frame_tag card_id(date), src: entries_day_path(date_to_param(date))

@@ -21,15 +21,34 @@
 # Controller for {Entry} records.
 class EntriesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_entry, only: %i[edit update destroy]
-  before_action :check_user, only: %i[edit update destroy]
+  before_action :set_entry, only: %i[show edit update destroy]
+  before_action :check_user, only: %i[show edit update destroy]
 
   # GET /entries
   def index
-    @entries = Entry.where(user_id: current_user.id)
-    # expose @data array of entries grouped by date for table { date: [objects] }
-    @data = @entries.sorted.group_by { |entry| entry.time.to_date }
-    @data[Time.zone.today.to_date] ||= []
+    @date_totals = Entry.for_user(current_user).sorted.group_by_date.count.map do |date_total|
+      [date_total.first.to_date, date_total.second]
+    end
+    @date_totals.prepend [Time.zone.today, 0] unless @date_totals.first.first == Time.zone.today
+  end
+
+  # GET /entries/day/20220101
+  def show_day
+    set_date || not_found!
+    set_date_entries
+
+    render layout: false
+  end
+
+  def show; end
+
+  def blank
+    set_date
+  end
+
+  def new
+    set_date # || @date = Time.zone.now
+    @entry = Entry.new(user: current_user, time: @date)
   end
 
   # POST /entries
@@ -39,6 +58,7 @@ class EntriesController < ApplicationController
     # enfore correct user
     @entry.user = current_user
     @entry.save
+    flash.now[:success] = t('.success')
   end
 
   # GET /entries/1/edit
@@ -46,26 +66,30 @@ class EntriesController < ApplicationController
 
   # PATCH/PUT /entries/1
   def update
-    respond_to do |format|
-      if @entry.update(entry_params)
-        format.html { redirect_to entries_path, notice: t('.success') }
-      else
-        format.html { render :edit }
-      end
-      format.js
+    # respond_to do |format|
+    #   if @entry.update(entry_params)
+    #     format.html { redirect_to entry_path(@entry), notice: t('.success') }
+    #   else
+    #     format.html { render :edit }
+    #   end
+    # end
+    if @entry.update(entry_params)
+      flash.now[:success] = t('.success')
+    else
+      # TODO: do something
     end
   end
 
   # DELETE /entries/1
   def destroy
     @entry.destroy
+    flash.now[:success] = t('.success')
   end
 
   private
 
-  # Use callbacks to share common setup or constraints between actions.
   def set_entry
-    @entry = Entry.find(params[:id])
+    @entry = Entry.for_user(current_user).find(params[:id])
   end
 
   # Only allow a list of trusted parameters through.
@@ -76,5 +100,17 @@ class EntriesController < ApplicationController
   # Repond with 401 error if the user attempts to manipulate another user's entries
   def check_user
     head :forbidden unless current_user.id == @entry.user_id
+  end
+
+  # Sets date (nil if invalid format)
+  def set_date
+    return nil unless /\d{8}/.match?(params[:date])
+
+    @date = helpers.param_to_date params[:date]
+  end
+
+  # Sets entries
+  def set_date_entries
+    @entries = Entry.for_user(current_user).find_by(date: @date)
   end
 end

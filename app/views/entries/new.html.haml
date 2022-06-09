@@ -1,5 +1,5 @@
-= turbo_frame_tag card_entry_id(@entry.time, @entry) do
+= turbo_frame_tag card_new_entry_id(@date) do
   = render CardComponent.new do |card|
     - card.with_header do |header|
-      - header.with_title title: 'Edit entry'
+      - header.with_title title: 'New entry'
     - card.with_entries_form(entry: @entry)

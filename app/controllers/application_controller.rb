@@ -23,6 +23,8 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   around_action :switch_locale
 
+  add_flash_types :success, :warning, :danger, :info
+
   def default_url_options
     { locale: (I18n.locale unless I18n.locale == I18n.default_locale) }
   end
@@ -34,8 +36,12 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:account_update, keys: [:name])
   end
 
-  def switch_locale(&action)
+  def switch_locale(&)
     locale = params[:locale] || I18n.default_locale
-    I18n.with_locale locale, &action
+    I18n.with_locale(locale, &)
+  end
+
+  def not_found!
+    raise ActionController::RoutingError, 'Not Found'
   end
 end

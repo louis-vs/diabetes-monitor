@@ -1,0 +1,4 @@
+= button_to @path, method: @method, params: @params, class: "btn btn-#{@button_type} #{@classes}" do
+  - unless @icon.blank?
+    = bs_icon @icon
+  = @name

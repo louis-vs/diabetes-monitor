@@ -1,0 +1,4 @@
+= turbo_stream.replace 'flash' do
+  = render partial: 'application/flash'
+
+= turbo_stream.remove card_entry_id(@entry.time, @entry)

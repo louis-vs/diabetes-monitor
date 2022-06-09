@@ -1,0 +1,8 @@
+= turbo_stream.replace 'flash' do
+  = render partial: 'application/flash'
+
+= turbo_stream.append card_entries_id(@entry.time) do
+  .flex-grow-1= lazy_turbo_frame_tag card_entry_id(@entry.time, @entry), src: entry_path(@entry)
+
+= turbo_stream.replace card_new_entry_id(@entry.time) do
+  = lazy_turbo_frame_tag card_new_entry_id(@entry.time), src: blank_new_entry_path(date: date_to_param(@entry.time))

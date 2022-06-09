@@ -1,0 +1,6 @@
+.d-flex.flex-wrap.justify-content-around.w-100{id: @id}
+  - cards.each do |card|
+    = card
+  - if last_card?
+    .order-last= last_card
+

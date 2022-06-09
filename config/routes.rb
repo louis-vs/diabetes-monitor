@@ -9,6 +9,10 @@ Rails.application.routes.draw do
   get 'terms', to: 'welcome#terms'
   get 'shared_entries', to: 'shared_entries#index'
 
-  resources :entries, only: %i[index create edit update destroy]
+  resources :entries do
+    get 'blank', on: :new
+  end
+  get 'entries/day/:date', to: 'entries#show_day', as: :entries_day
+
   resources :share_tokens, only: %i[index create update destroy]
 end

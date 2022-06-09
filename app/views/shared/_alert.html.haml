@@ -1,6 +1,0 @@
--# locals: alert_type
--# yields to alert content
-.alert{ class: "#{alert_type} alert-dismissable fade show", role: 'alert' }
-  = yield
-  %button{ type: 'button', class: 'close', data: { dismiss: 'alert' }, aria: { label: 'Close' } }
-    %span{ aria: { hidden: true } } &times;

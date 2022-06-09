@@ -42,6 +42,9 @@ class Entry < ApplicationRecord
   enum tag: { other: 0, morning: 1, lunch: 2, dinner: 3, night: 4 }
 
   scope :sorted, -> { order(time: :asc) }
+  scope :group_by_date, -> { group("entries.id, date_trunc('day', time)") }
+  scope :find_by_date, ->(date) { Entry.where("date_trunc('day', time) = TIMESTAMP ?", date.to_s) }
+  scope :for_user, ->(user) { Entry.where(user:) }
 
   validates :time, presence: true
   validates :blood_sugar, numericality: { greater_than_or_equal_to: 0 }

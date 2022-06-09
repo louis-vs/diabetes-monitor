@@ -6,17 +6,18 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '3.1.2'
 
 gem 'bootsnap', '~> 1.7.6', require: false
-gem 'devise'
+gem 'cssbundling-rails', '~> 1.1'
+gem 'devise', '~> 4.8'
 gem 'haml-rails', '~> 2.0'
+gem 'jsbundling-rails', '~> 1.0'
 gem 'pg', '~> 1.1'
+gem 'propshaft', '~> 0.6'
 gem 'puma', '~> 5.4'
 gem 'rails', '~> 7.0'
 gem 'rails-i18n', '~> 7.0'
 gem 'stimulus-rails', '~> 1.0'
 gem 'turbo-rails', '~> 1.1'
-gem 'cssbundling-rails'
-gem 'jsbundling-rails'
-gem 'propshaft'
+gem 'view_component', '~> 2.56'
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
@@ -50,4 +51,4 @@ end
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
 # Use Redis for Action Cable
-gem "redis", "~> 4.0"
+gem 'redis', '~> 4.0'

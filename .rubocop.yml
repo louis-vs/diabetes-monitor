@@ -3,7 +3,7 @@ require:
   - rubocop-rails
 
 AllCops:
-  TargetRubyVersion: 2.7
+  TargetRubyVersion: 3.1
   NewCops: enable
   Exclude:
     - bin/**/*
@@ -13,3 +13,7 @@ AllCops:
     - tmp/**/*
     - vendor/**/*
     - .git/**/*
+
+Lint/MissingSuper:
+  Exclude:
+    - app/components/**/*

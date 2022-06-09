@@ -1,0 +1,5 @@
+= turbo_stream.replace 'flash' do
+  = render partial: 'application/flash'
+
+= turbo_stream.replace card_entry_id(@entry.time, @entry) do
+  = lazy_turbo_frame_tag card_entry_id(@entry.time, @entry), src: entry_path(@entry)

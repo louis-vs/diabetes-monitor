@@ -1,0 +1,3 @@
+#flash.sticky-top
+  - flash.each do |flash_type, message|
+    = render AlertComponent.new(type: flash_type, text: message)
