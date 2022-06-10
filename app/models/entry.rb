@@ -53,6 +53,6 @@ class Entry < ApplicationRecord
   end
 
   def self.for_user(user)
-     Entry.where(user: user)
+    Entry.where(user:)
   end
 end
