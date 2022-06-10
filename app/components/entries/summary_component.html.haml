@@ -1,0 +1,10 @@
+%h3
+  %span.blood-glucose-reading= t '.blood_glucose_units', value: @entry.blood_sugar
+  %span.reading-separator.mx-2
+  %span.insulin-reading.me-2= t '.insulin_units', value: @entry.insulin
+  = helpers.bs_badge @entry.tag
+%p
+  %span.fw-bold= time_tag @entry.time, format: :time
+  - unless @entry.notes.blank?
+    %span.reading-separator
+    %span= @entry.notes

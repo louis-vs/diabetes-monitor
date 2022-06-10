@@ -1,3 +1,17 @@
 @import 'custom/_custom';
 @import 'bootstrap/scss/bootstrap';
 @import 'bootstrap-icons/font/bootstrap-icons';
+
+.blood-glucose-reading {
+  color: $indigo;
+}
+
+.insulin-reading {
+  color: $green;
+}
+
+.reading-separator::after {
+  content: '/';
+  color: $gray-500;
+}
+

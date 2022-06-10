@@ -1,7 +1,6 @@
 = turbo_frame_tag card_entry_id(@entry.time, @entry) do
   = render CardComponent.new do |card|
-    - card.with_header do |header|
-      - header.with_title(title: time_tag(@entry.time, format: :time), tag: :h3, subtitle: @entry.tag)
+    - card.with_entry_summary(entry: @entry)
 
     - card.with_action_group do |action_group|
       - action_group.with_action name: 'Edit', path: edit_entry_path(@entry)
