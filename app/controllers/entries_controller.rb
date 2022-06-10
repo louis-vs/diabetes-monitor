@@ -29,7 +29,7 @@ class EntriesController < ApplicationController
     @date_totals = Entry.for_user(current_user).sorted.group_by_date.count.map do |date_total|
       [date_total.first.to_date, date_total.second]
     end
-    @date_totals.prepend [Time.zone.today, 0] unless @date_totals.first.first == Time.zone.today
+    @date_totals.prepend([Time.zone.today, 0]) unless @date_totals.first.first == Time.zone.today
   end
 
   # GET /entries/day/20220101
@@ -111,6 +111,6 @@ class EntriesController < ApplicationController
 
   # Sets entries
   def set_date_entries
-    @entries = Entry.for_user(current_user).find_by(date: @date)
+    @entries = Entry.for_user(current_user).find_by_date(@date)
   end
 end

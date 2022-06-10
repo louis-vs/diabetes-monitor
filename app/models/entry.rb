@@ -41,7 +41,7 @@ class Entry < ApplicationRecord
 
   enum tag: { other: 0, morning: 1, lunch: 2, dinner: 3, night: 4 }
 
-  scope :sorted, -> { order(time: :asc) }
+  scope :sorted, -> { order(time: :desc) }
   scope :group_by_date, -> { group("entries.id, date_trunc('day', time)") }
   scope :find_by_date, ->(date) { Entry.where("date_trunc('day', time) = TIMESTAMP ?", date.to_s) }
   scope :for_user, ->(user) { Entry.where(user:) }
