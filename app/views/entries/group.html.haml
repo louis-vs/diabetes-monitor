@@ -1,0 +1,5 @@
+= turbo_frame_tag entries_id do
+  = render CardGroupComponent.new do |group|
+    - @date_totals.each do |date, total|
+      - group.with_card do
+        = lazy_turbo_frame_tag card_id(date), src: entries_day_path(date_to_param(date))

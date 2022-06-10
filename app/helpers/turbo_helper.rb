@@ -18,6 +18,10 @@ module TurboHelper
     spinner_tag(id:, hidden: true)
   end
 
+  def entries_id
+    'entries'
+  end
+
   def card_id(date)
     "card_#{date_to_param(date)}"
   end

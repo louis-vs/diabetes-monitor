@@ -25,7 +25,10 @@ class EntriesController < ApplicationController
   before_action :check_user, only: %i[show edit update destroy]
 
   # GET /entries
-  def index
+  def index; end
+
+  # GET /entries/group
+  def group
     @date_totals = Entry.for_user(current_user).sorted.group_by_date.count.map do |date_total|
       [date_total.first.to_date, date_total.second]
     end
@@ -59,6 +62,10 @@ class EntriesController < ApplicationController
     @entry.user = current_user
     @entry.save
     flash.now[:success] = t('.success')
+
+    if Entry.for_user(current_user).find_by_date(@entry.time.to_date).count == 1
+      @render_new_day = true
+    end
   end
 
   # GET /entries/1/edit

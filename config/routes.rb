@@ -11,6 +11,7 @@ Rails.application.routes.draw do
 
   resources :entries do
     get 'blank', on: :new
+    get 'group', on: :collection
   end
   get 'entries/day/:date', to: 'entries#show_day', as: :entries_day
 

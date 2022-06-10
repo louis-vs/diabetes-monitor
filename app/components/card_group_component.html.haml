@@ -1,6 +1,6 @@
-.d-flex.flex-wrap.justify-content-around.w-100{id: @id}
+.d-flex.flex-wrap.justify-content-between.w-100{id: @id}
   - cards.each do |card|
-    = card
+    .col-12{class: (responsive? ? 'col-lg-6' : '')}= card
   - if last_card?
-    .order-last= last_card
+    .order-last.col-12{class: (responsive? ? 'col-lg-6' : '')}= last_card
 
