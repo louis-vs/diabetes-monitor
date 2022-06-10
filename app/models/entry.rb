@@ -43,10 +43,16 @@ class Entry < ApplicationRecord
 
   scope :sorted, -> { order(time: :desc) }
   scope :group_by_date, -> { group("entries.id, date_trunc('day', time)") }
-  scope :find_by_date, ->(date) { Entry.where("date_trunc('day', time) = TIMESTAMP ?", date.to_s) }
-  scope :for_user, ->(user) { Entry.where(user:) }
 
   validates :time, presence: true
   validates :blood_sugar, numericality: { greater_than_or_equal_to: 0 }
   validates :insulin, numericality: { greater_than_or_equal_to: 0 }
+
+  def self.find_by_date(date)
+    Entry.where("date_trunc('day', time) = TIMESTAMP ?", date.to_s)
+  end
+
+  def self.for_user(user)
+     Entry.where(user: user)
+  end
 end
