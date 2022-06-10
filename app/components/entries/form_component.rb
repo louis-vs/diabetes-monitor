@@ -14,9 +14,9 @@ module Entries
               href: blank_new_entry_path(date: helpers.date_to_param(@entry.time)),
               class: 'btn btn-danger'
       else
-        button_to entry_path(@entry), method: :delete, class: 'btn btn-danger' do
-          helpers.bs_icon('trash-fill')
-        end
+        render Cards::ActionComponent.new(icon: 'trash-fill', path: entry_path(@entry),
+                                          method: :delete, confirm_message: 'Are you sure?',
+                                          button_type: 'danger')
       end
     end
 

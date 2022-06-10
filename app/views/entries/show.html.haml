@@ -5,4 +5,4 @@
 
     - card.with_action_group do |action_group|
       - action_group.with_action name: 'Edit', path: edit_entry_path(@entry)
-      - action_group.with_secondary_action icon: 'trash-fill', path: entry_path(@entry), method: :delete, button_type: 'danger'
+      - action_group.with_secondary_action icon: 'trash-fill', path: entry_path(@entry), method: :delete, confirm_message: 'Are you sure?', button_type: 'danger'

@@ -6,3 +6,7 @@
 
 = turbo_stream.replace card_new_entry_id(@entry.time) do
   = lazy_turbo_frame_tag card_new_entry_id(@entry.time), src: blank_new_entry_path(date: date_to_param(@entry.time))
+
+-# always replace top form
+= turbo_stream.replace card_new_entry_id(nil) do
+  = lazy_turbo_frame_tag card_new_entry_id(nil), src: blank_new_entry_path
